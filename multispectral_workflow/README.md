@@ -43,20 +43,23 @@ The pipeline processes raw RGB and NIR images, applies calibration routines, and
 
 ## Requirements
 
-- **MATLAB** (tested with R2023a or later)  
+- MATLAB (tested with R2023a or later)  
 - Toolboxes:
   - Image Processing Toolbox  
   - Deep Learning Toolbox  
 - Pre-trained semantic segmentation network (trained and validated for *Cucumis sativus* datasets):
-  - Included in this repository: `/multispectral_workflow/cucSegNDVI_v7.mat`
+  - Available via Zenodo: [https://doi.org/10.5281/zenodo.16902271](https://doi.org/10.5281/zenodo.16902271)  
+  - After download, place the file into `/multispectral_workflow/`  
   - Default path defined in the script:
     ```matlab
     segModelPath = "cucSegNDVI_v7.mat";
     ```
-  - Model based on a ResNet50 architecture fine-tuned for plant segmentation.
+  - Semantic segmentation model based on a DeepLab v3+ architecture with a ResNet50 backbone, fine-tuned for plant segmentation (*Cucumis sativus*).
 - Input data:
-  - Raw RGB and NIR images in `.bin` format  
-  - Calibration folders containing averaged **BIAS**, **DARK**, and **FLAT** frames  
+  - Raw RGB and NIR images in 8-bit binary format (`.bin`)  
+  - Image dimensions: 2048 × 1536 pixels 
+  - Calibration frames (BIAS, DARK, FLAT) for both RGB and NIR sensors  
+  - Danes Picta GC5 chart for empirical line calibration    
 
 ## Notes
 
