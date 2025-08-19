@@ -35,7 +35,7 @@ The repository is intended as a resource for researchers and engineers in plant 
 ---
 
 ## License
-This project is distributed under the Apache 2.0 Licence, which permits use, modification, and redistribution with proper attribution. For complete terms, please see the [LICENSE](./LICENSE) file.  
+This project is distributed under the Apache 2.0 Licence, which allows users to freely use, modify, and redistribute the software for both academic and commercial purposes, provided that proper attribution is given to the original authors. For the complete licence terms, please see the [LICENSE](./LICENSE) file.  
 
 ---
 
