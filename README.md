@@ -1,4 +1,4 @@
-  # Plant Phenotyping Platform 
+# Plant Phenotyping Platform 
 
 This repository hosts software developed for a lab-scale prototype of a multifunctional robotic system** designed for non-destructive plant phenotyping, created at the Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague.  
 
@@ -6,7 +6,8 @@ The apparatus consists of a robotic arm [AR4](https://anninrobotics.com/), a cus
 
 The platform combines robotic hardware control with advanced data acquisition and processing workflows. It enables reproducible and scalable monitoring of plant traits using multispectral and photogrammetric approaches. Beyond its technical scope, the system has potential applications in the study of plant interactions with both biotic factors (e.g., microbial biostimulants) and abiotic factors, providing valuable insights into plant health, physiology, and adaptive responses.  
 
-The repository is intended as a resource for researchers and engineers in plant sciences, bioengineering, and precision agriculture, providing modular and extensible code for both laboratory and applied environments.  
+The repository is intended as a resource for researchers and engineers in plant sciences, bioengineering, and precision agriculture, providing modular and extensible code for both laboratory and applied environments.
+
  ---
 
 ## Features
