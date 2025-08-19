@@ -50,7 +50,7 @@ We also acknowledge the technical support provided by
 
 ---
 
-## Related Publications
+## Related publications
 Mach, J., et al., Development of low-cost multifunctional robotic apparatus for high-throughput plant phenotyping. Smart Agricultural Technology, 2024. 9: p. 17. [https://doi.org/10.1016/j.atech.2024.100654](https://doi.org/10.1016/j.atech.2024.100654)
 
 ---
