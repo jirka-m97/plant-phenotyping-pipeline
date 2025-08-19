@@ -1,3 +1,61 @@
+"""
+camera_control_and_data_acqisitioin.py
+--------------------------------------
+
+Author: [Jiří Mach]
+Date: [2025-08-19]
+License: [Apache 2.0]
+
+Description:
+This script provides automated control and data acquisition for the 
+multispectral FS 3200D 10GE camera. It was developed as an alternative 
+to the eBUS Player for JAI, which, while functional, presented limitations 
+in user-friendliness and process automation. By employing the Pleora eBUS SDK 
+(`eBUS`, `PvSampleUtils`), OpenCV (`cv2`), and NumPy (`numpy`), the script 
+enables device detection, connection, and dual-stream acquisition from 
+the RGB (Source0) and NIR (Source1) sensors.
+
+Core functionality includes:
+- Automatic device detection and connection via GigE Vision interface.
+- Stream negotiation, packet size optimisation, and buffer allocation.
+- Configuration of camera parameters (resolution, exposure time, frame rate, 
+  acquisition mode).
+- Acquisition of multispectral images with alternating retrieval from RGB and NIR sensors.
+- Handling of multiple payload formats, including Pleora-compressed data.
+- Saving of raw binary images for subsequent processing (RGB and NIR separately).
+- Real-time diagnostic output (frame rate, bandwidth, compression ratio).
+- Acquisition of calibration frames (BIAS, DARK, FLAT) for both sensors, 
+  required for the generation of MASTER calibration images.
+
+Calibration images:
+- BIAS: exposure time 1 µs, lens shuttered (RGB and NIR).
+- DARK: exposure times 985 µs (RGB) and 2850 µs (NIR), lens shuttered.
+- FLAT: identical exposure settings as DARK, but with lens uncovered.
+- For each category, 20 images were acquired at full resolution (2048 × 1536 px),
+  consistent with object images (plants).
+
+Usage:
+- Requires Python 3.x, Pleora eBUS SDK, OpenCV, and NumPy.
+- Output data are saved in `.bin` format for subsequent analysis.
+- Designed for automated, reproducible dual-channel multispectral imaging workflows.
+
+Notes:
+Ensure that the Pleora eBUS SDK and drivers are correctly installed on the 
+host system prior to execution.
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+"""
+
 import os
 import cv2
 import numpy as np
