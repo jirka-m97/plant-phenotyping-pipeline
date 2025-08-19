@@ -2,8 +2,8 @@
 
 This folder provides two variants of the multispectral NDVI workflow script:  
 
-- `image_data_processing.m` – baseline workflow without automatic segmentation, suitable for general NDVI computation from RGB and NIR data.  
-- `image_data_processing_cuc.m` – extended workflow including a pre-trained semantic segmentation model (DeepLab v3+ with ResNet50 backbone) enabling automatic plant segmentation, currently fine-tuned only for *Cucumis sativus*.  
+- `MS_pipeline_v8.m` – baseline workflow without automatic segmentation, suitable for general NDVI computation from RGB and NIR data.  
+- `MS_pipeline_v8_cuc.m` – extended workflow including a pre-trained semantic segmentation model (DeepLab v3+ with ResNet50 backbone) enabling automatic plant segmentation, currently fine-tuned only for *Cucumis sativus*.  
 
 ## Main Steps
 
@@ -27,7 +27,10 @@ This folder provides two variants of the multispectral NDVI workflow script:
    - Produces reflectance-corrected RGB and NIR images.
 
 5. **NDVI computation**
-   - Computes NDVI = (NIR − Red) / (NIR + Red).
+   - Computes
+     \[
+     \text{NDVI} = \frac{NIR - Red}{NIR + Red}
+     \].
    - Stores the NDVI map in the MATLAB workspace for further use.
 
 6. **Plant segmentation**
