@@ -27,10 +27,7 @@ This folder provides two variants of the multispectral NDVI workflow script:
    - Produces reflectance-corrected RGB and NIR images.
 
 5. **NDVI computation**
-   - Computes
-     \[
-     \text{NDVI} = \frac{NIR - Red}{NIR + Red}
-     \].
+   - Computes NDVI = (NIR − Red) / (NIR + Red)
    - Stores the NDVI map in the MATLAB workspace for further use.
 
 6. **Plant segmentation**
