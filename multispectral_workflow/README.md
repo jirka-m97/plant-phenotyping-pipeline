@@ -1,7 +1,9 @@
 # NDVI Post-Processing Pipeline
 
-This folder contains a MATLAB script implementing the multispectral NDVI workflow for non-destructive plant phenotyping.  
-The pipeline processes raw RGB and NIR images, applies calibration routines, and computes NDVI.
+This folder provides two variants of the multispectral NDVI workflow script:  
+
+- `image_data_processing.m` – baseline workflow without automatic segmentation, suitable for general NDVI computation from RGB and NIR data.  
+- `image_data_processing_cuc.m` – extended workflow including a pre-trained semantic segmentation model (DeepLab v3+ with ResNet50 backbone) enabling automatic plant segmentation, currently fine-tuned only for *Cucumis sativus*.  
 
 ## Main Steps
 
@@ -29,15 +31,19 @@ The pipeline processes raw RGB and NIR images, applies calibration routines, and
    - Stores the NDVI map in the MATLAB workspace for further use.
 
 6. **Plant segmentation**
+   (withnout segmentator)
+   - 
+   
+   (only for *Cucumis sativus*)
    - Loads a pre-trained ResNet50 semantic segmentation model.
    - Generates a binary plant mask.
    - Refines the mask by removing small objects and applying NDVI thresholds to exclude background, soil, and artefacts.
 
-7. **NDVI for plant pixels only**
+8. **NDVI for plant pixels only**
    - Applies the refined plant mask to retain only valid plant pixels.
    - Computes mean ± standard deviation of NDVI for plant areas.
 
-8. **Visualisation**
+9. **Visualisation**
    - Displays RGB image with ROI overlays.
    - Displays NDVI maps with jet colour scale fixed to range [-1, 1].
 
