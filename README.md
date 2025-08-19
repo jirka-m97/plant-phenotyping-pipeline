@@ -1,43 +1,46 @@
 # Non-Destructive Plant Phenotyping Platform
 
-This repository provides software resources for non-destructive plant phenotyping, developed at the **Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague**.  
+This repository hosts software developed for a **lab-scale prototype of a multifunctional robotic system** designed for **non-destructive plant phenotyping**, created at the **Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague**.  
 
-The codebase supports both **hardware control** and **data analysis** within a multifunctional robotic phenotyping system.
+The platform combines **robotic hardware control** with advanced **data acquisition and processing workflows**. It enables reproducible and scalable monitoring of plant traits using multispectral and photogrammetric approaches. Beyond its technical scope, the system has potential applications in the study of **plant interactions with both biotic factors (e.g., microbial biostimulants) and abiotic factors**, providing valuable insights into plant health, physiology, and adaptive responses.  
+
+The repository is intended as a resource for researchers and engineers in plant sciences, bioengineering, and precision agriculture, providing modular and extensible code for both laboratory and applied environments.  
 
 ---
 
 ## Features
 
-### 1. Robotic Control
-- Control algorithms for a robotic arm (serving as a sensor carrier for the multispectral and industrial cameras) and a motorised turntable.  
-- Enables flexible sensor positioning and precise, reproducible plant monitoring.  
+### 1. Robot and Turntable Control
+- Algorithms for controlling a robotic arm (serving as a sensor carrier for multispectral and industrial cameras) and a motorised turntable.  
+- Provides accurate synchronisation between plant positioning and sensor operation.  
+- Ensures flexible and repeatable measurement conditions for a wide range of phenotyping tasks.  
 
 ### 2. Multispectral Analysis
-- Control routines for a multispectral camera.  
-- Automated data acquisition, storage, and processing of spectral images.  
-- NDVI computation for assessing plant physiological status and health.  
+- Camera control routines supporting automated image capture, data management, and storage.  
+- Processing pipelines for handling multispectral datasets.  
+- Implementation of vegetation index (NDVI) computation to assess plant vitality and stress status.  
+- Development and implementation of an automatic image segmentation module for reliable separation of plant material from the background prior to analysis.  
 
 ### 3. Photogrammetric Analysis
-- Control software for an industrial RGB camera.  
-- Automated image capture and data storage.  
-- Integration with the Metashape API for 3D photogrammetric reconstruction of plants.  
+- Software for industrial RGB camera operation and automated image acquisition.  
+- Integration with the Metashape API for three-dimensional plant reconstruction, enabling detailed analysis of morphology and growth dynamics.  
 
 ---
 
 ## Structure
-- `/hardware` – robotic arm and turntable control.  
-- `/multispectral` – multispectral imaging, NDVI computation.  
-- `/photogrammetry` – industrial camera control, 3D reconstruction workflows.  
+- `/robot_and_turntable_control` – robotic arm and turntable control modules.  
+- `/multispectral` – tools for multispectral imaging, NDVI-based health assessment, and automatic segmentation.  
+- `/photogrammetry` – industrial camera control and 3D reconstruction workflows.  
 
 ---
 
 ## License
-This project is licensed under the **Apache 2.0 License** – see the [LICENSE](./LICENSE) file for details.
+This project is released under the **Apache 2.0 Licence** – see the [LICENSE](./LICENSE) file for details.  
 
 ---
 
 ## Acknowledgement
-This work was developed at the **Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague (UCT Prague)**,  
+Developed at the **Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague (UCT Prague)**,  
 in collaboration with the **Department of Radioelectronics, Faculty of Electrical Engineering, Czech Technical University in Prague (CTU)**,  
 and the **Department of Forensic Experts in Transportation, Faculty of Transportation Sciences, CTU in Prague**.  
 
