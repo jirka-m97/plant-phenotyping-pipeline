@@ -1,5 +1,5 @@
 # Plant phenotyping platform 
-
+---
 This repository contains software developed for a lab-scale prototype of a multifunctional robotic system for non-destructive plant phenotyping, created at the Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague.  
 
 The apparatus comprises a [robotic arm AR4](https://anninrobotics.com/), a custom-made motorised turntable, a dedicated lighting system combining halogen and LED sources, a [multispectral camera FS 3200D 10GE](https://ftp.stemmer-imaging.com/webdavs/docmanager/150153-JAI-FS-3200D-10GE-Datasheet.pdf), and an [industrial RGB camera MER2-1220-32U3C](https://en.daheng-imaging.com/show-106-1997-1.html). These components are integrated into a unified platform that allows flexible sensor positioning, standardised imaging conditions, and the acquisition of complementary spectral and structural datasets. The system also provides workflows for data evaluation and post-processing, ensuring robust interpretation of multispectral and photogrammetric outputs. Beyond its technical capabilities, the system offers potential applications in studying plant interactions with both biotic factors (e.g., microbial biostimulants) and abiotic factors, thereby providing valuable insights into plant health, physiology, and adaptive responses. 
