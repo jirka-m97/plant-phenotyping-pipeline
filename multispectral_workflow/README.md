@@ -1,7 +1,7 @@
 # NDVI Post-Processing Pipeline
 
-This folder contains a MATLAB script implementing the **multispectral NDVI workflow** for plant phenotyping.  
-The pipeline processes raw RGB and NIR images, applies calibration routines, computes NDVI, and performs plant-specific analysis.
+This folder contains a MATLAB script implementing the multispectral NDVI workflow for non-destructive plant phenotyping.  
+The pipeline processes raw RGB and NIR images, applies calibration routines, and computes NDVI.
 
 ## Main Steps
 
@@ -47,7 +47,7 @@ The pipeline processes raw RGB and NIR images, applies calibration routines, com
 - Toolboxes:
   - Image Processing Toolbox  
   - Deep Learning Toolbox  
-- Pre-trained semantic segmentation network:
+- Pre-trained semantic segmentation network (trained and validated for *Cucumis sativus* datasets):
   - Included in this repository: `/multispectral_workflow/cucSegNDVI_v7.mat`
   - Default path defined in the script:
     ```matlab
