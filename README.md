@@ -29,8 +29,8 @@ The repository is intended as a resource for researchers and engineers in plant 
 
 ## Structure
 - `/robot_and_turntable_control` – robotic arm and turntable control modules.  
-- `/multispectral` – tools for multispectral imaging, NDVI-based health assessment, and automatic segmentation.  
-- `/photogrammetry` – industrial camera control and 3D reconstruction workflows.  
+- `/multispectral_workflow` – tools for multispectral imaging, NDVI-based health assessment, and automatic segmentation.  
+- `/photogrammetry_workflow` – industrial camera control and 3D reconstruction workflows.  
 
 ---
 
