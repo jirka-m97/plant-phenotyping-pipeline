@@ -1,10 +1,10 @@
 # Plant Phenotyping Platform 
 
-This repository hosts software developed for a lab-scale prototype of a multifunctional robotic system** designed for non-destructive plant phenotyping, created at the Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague.  
+This repository contains software developed for a lab-scale prototype of a multifunctional robotic system for non-destructive plant phenotyping, developed at the Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague.
 
-The apparatus consists of a robotic arm [AR4](https://anninrobotics.com/), a custom-made motorised turntable, a dedicated lighting system (halogen and LED sources), a multispectral camera [FS 3200D 10GE](https://ftp.stemmer-imaging.com/webdavs/docmanager/150153-JAI-FS-3200D-10GE-Datasheet.pdf), and an industrial RGB camera [MER2-1220-32U3C](https://en.daheng-imaging.com/show-106-1997-1.html). These components are integrated into a single platform enabling flexible sensor positioning, reproducible imaging conditions, and the acquisition of complementary spectral and structural datasets.  
+This repository contains software developed for a lab-scale prototype of a multifunctional robotic system for non-destructive plant phenotyping, created at the Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague.  
 
-The platform combines robotic hardware control with advanced data acquisition and processing workflows. It enables reproducible and scalable monitoring of plant traits using multispectral and photogrammetric approaches. Beyond its technical scope, the system has potential applications in the study of plant interactions with both biotic factors (e.g., microbial biostimulants) and abiotic factors, providing valuable insights into plant health, physiology, and adaptive responses.  
+The apparatus comprises a [robotic arm AR4](https://anninrobotics.com/), a custom-made motorised turntable, a dedicated lighting system combining halogen and LED sources, a [multispectral camera FS 3200D 10GE](https://ftp.stemmer-imaging.com/webdavs/docmanager/150153-JAI-FS-3200D-10GE-Datasheet.pdf), and an [industrial RGB camera MER2-1220-32U3C](https://en.daheng-imaging.com/show-106-1997-1.html). These components are integrated into a unified platform that allows flexible sensor positioning, standardised imaging conditions, and the acquisition of complementary spectral and structural datasets. The system also provides workflows for data evaluation and post-processing, ensuring robust interpretation of multispectral and photogrammetric outputs. Beyond its technical capabilities, the system offers potential applications in studying plant interactions with both biotic factors (e.g., microbial biostimulants) and abiotic factors, thereby providing valuable insights into plant health, physiology, and adaptive responses. 
 
 The repository is intended as a resource for researchers and engineers in plant sciences, bioengineering, and precision agriculture, providing modular and extensible code for both laboratory and applied environments.
 
@@ -25,7 +25,7 @@ The repository is intended as a resource for researchers and engineers in plant 
 
 ### 3. Photogrammetric Analysis
 - Software for industrial RGB camera operation and automated image acquisition.  
-- Integration with the Metashape API for three-dimensional plant reconstruction, enabling detailed analysis of morphology and growth dynamics.  
+- Integration with [the Metashape API](https://www.agisoft.com/pdf/metashape_python_api_2_0_0.pdf) for three-dimensional plant reconstruction, enabling detailed analysis of morphology and growth dynamics.  
 
 ---
 
@@ -37,14 +37,14 @@ The repository is intended as a resource for researchers and engineers in plant 
 ---
 
 ## License
-This project is released under the **Apache 2.0 Licence** – see the [LICENSE](./LICENSE) file for details.  
+This project is released under the Apache 2.0 Licence – see the [LICENSE](./LICENSE) file for details.  
 
 ---
 
 ## Acknowledgement
-Developed at the **Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague (UCT Prague)**,  
-in collaboration with the **Department of Radioelectronics, Faculty of Electrical Engineering, Czech Technical University in Prague (CTU)**,  
-and the **Department of Forensic Experts in Transportation, Faculty of Transportation Sciences, CTU in Prague**.  
+Developed at the Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague,  
+in collaboration with the Department of Radioelectronics, Faculty of Electrical Engineering, Czech Technical University in Prague,  
+and the Department of Forensic Experts in Transportation, Faculty of Transportation Sciences, Czech Technical University in Prague.  
 
 ---
 
