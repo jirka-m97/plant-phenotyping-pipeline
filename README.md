@@ -1,12 +1,13 @@
-# Non-Destructive Plant Phenotyping Platform
+  # Plant Phenotyping Platform 
 
-This repository hosts software developed for a **lab-scale prototype of a multifunctional robotic system** designed for **non-destructive plant phenotyping**, created at the **Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague**.  
+This repository hosts software developed for a lab-scale prototype of a multifunctional robotic system** designed for non-destructive plant phenotyping, created at the Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague.  
 
-The platform combines **robotic hardware control** with advanced **data acquisition and processing workflows**. It enables reproducible and scalable monitoring of plant traits using multispectral and photogrammetric approaches. Beyond its technical scope, the system has potential applications in the study of **plant interactions with both biotic factors (e.g., microbial biostimulants) and abiotic factors**, providing valuable insights into plant health, physiology, and adaptive responses.  
+The apparatus consists of a robotic arm [AR4](https://anninrobotics.com/), a custom-made motorised turntable, a dedicated lighting system (halogen and LED sources), a multispectral camera [FS 3200D 10GE](https://ftp.stemmer-imaging.com/webdavs/docmanager/150153-JAI-FS-3200D-10GE-Datasheet.pdf), and an industrial RGB camera [MER2-1220-32U3C](https://en.daheng-imaging.com/show-106-1997-1.html). These components are integrated into a single platform enabling flexible sensor positioning, reproducible imaging conditions, and the acquisition of complementary spectral and structural datasets.  
+
+The platform combines robotic hardware control with advanced data acquisition and processing workflows. It enables reproducible and scalable monitoring of plant traits using multispectral and photogrammetric approaches. Beyond its technical scope, the system has potential applications in the study of plant interactions with both biotic factors (e.g., microbial biostimulants) and abiotic factors, providing valuable insights into plant health, physiology, and adaptive responses.  
 
 The repository is intended as a resource for researchers and engineers in plant sciences, bioengineering, and precision agriculture, providing modular and extensible code for both laboratory and applied environments.  
-
----
+ ---
 
 ## Features
 
@@ -43,5 +44,10 @@ This project is released under the **Apache 2.0 Licence** – see the [LICENSE](
 Developed at the **Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague (UCT Prague)**,  
 in collaboration with the **Department of Radioelectronics, Faculty of Electrical Engineering, Czech Technical University in Prague (CTU)**,  
 and the **Department of Forensic Experts in Transportation, Faculty of Transportation Sciences, CTU in Prague**.  
+
+---
+
+## Related Publications
+Mach, J., et al., Development of low-cost multifunctional robotic apparatus for high-throughput plant phenotyping. Smart Agricultural Technology, 2024. 9: p. 17. [https://doi.org/10.1016/j.atech.2024.100654](https://doi.org/10.1016/j.atech.2024.100654)
 
 ---
