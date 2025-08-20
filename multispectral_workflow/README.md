@@ -26,24 +26,23 @@ This folder provides two variants of the multispectral NDVI workflow script:
    - Fits first-order polynomials (per RGB channel, single channel for NIR).
    - Produces reflectance-corrected RGB and NIR images.
 
-5. **NDVI computation**
-   - Computes NDVI = (NIR − Red) / (NIR + Red)
-   - Stores the NDVI map in the MATLAB workspace for further use.
+5. NDVI computation
+   - Computes NDVI as (NIR − Red) / (NIR + Red).
+   - Stores the NDVI map in the MATLAB workspace for subsequent processing.
 
-6. **Plant segmentation**
-   (withnout segmentator)
-   - 
-   
-   (only for *Cucumis sativus*)
-   - Loads a pre-trained ResNet50 semantic segmentation model.
+6a. Plant segmentation (manual, without segmentator – applicable to *Cucumis sativus* L., *Solanum lycopersicum* L., *Lactuca sativa* L., and potentially other untested plant species)
+   - Creates a binary mask using the MATLAB Image Segmenter app (Graph Cut tool).
+
+6b. Plant segmentation (automated, with segmentator – *Cucumis sativus* only)
+   - Loads the pre-trained ResNet-50 semantic segmentation model (cucSegNDVI_v7.mat).
    - Generates a binary plant mask.
-   - Refines the mask by removing small objects and applying NDVI thresholds to exclude background, soil, and artefacts.
+   - Refines the mask by removing small objects and applying NDVI-based thresholds to exclude background, soil, and artefacts.
 
-8. **NDVI for plant pixels only**
+7. **NDVI for plant pixels only**
    - Applies the refined plant mask to retain only valid plant pixels.
    - Computes mean ± standard deviation of NDVI for plant areas.
 
-9. **Visualisation**
+8. **Visualisation**
    - Displays RGB image with ROI overlays.
    - Displays NDVI maps with jet colour scale fixed to range [-1, 1].
 
