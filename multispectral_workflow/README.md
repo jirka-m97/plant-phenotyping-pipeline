@@ -30,10 +30,10 @@ This folder provides two variants of the multispectral NDVI workflow script:
    - Computes NDVI as (NIR − Red) / (NIR + Red).
    - Stores the NDVI map in the MATLAB workspace for subsequent processing.
 
-6a. **Plant segmentation (manual, without segmentator – applicable to *Cucumis sativus* L., *Solanum lycopersicum* L., *Lactuca sativa* L., and potentially other untested plant species)**
+   6a. **Plant segmentation (manual, without segmentator – applicable to *Cucumis sativus* L., *Solanum lycopersicum* L., *Lactuca sativa* L., and potentially other untested plant species)**
    - Creates a binary mask using the MATLAB Image Segmenter app (Graph Cut tool).
 
-6b. **Plant segmentation (automated, with segmentator – *Cucumis sativus* only)**
+   6b. **Plant segmentation (automated, with segmentator – *Cucumis sativus* only)**
    - Loads the pre-trained ResNet-50 semantic segmentation model (cucSegNDVI_v7.mat).
    - Generates a binary plant mask.
    - Refines the mask by removing small objects and applying NDVI-based thresholds to exclude background, soil, and artefacts.
