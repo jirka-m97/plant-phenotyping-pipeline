@@ -1,26 +1,18 @@
-# MS Camera Control and Data Acquisition
-## Overview
-
-This script camera_control_and_acquisition.py provides automated control and data acquisition for the multispectral FS 3200D 10GE camera.
-It was developed as an alternative to the JAI eBUS Player, which, although functional, offered limited user-friendliness and automation.
-
-By employing the Pleora eBUS SDK (eBUS, PvSampleUtils), OpenCV (cv2), and NumPy (numpy), the script enables device detection, connection, and dual-stream acquisition from:
-
- - RGB sensor (Source0)
- - NIR sensor (Source1)
-
-## Core Functionality
+# MS camera control and data acquisition
+## Core functionality
 
  - Automatic device detection and connection via the GigE Vision interface.
  - Stream negotiation, packet size optimisation, and buffer allocation.
  - Configuration of camera parameters (resolution, exposure time, frame rate, acquisition mode).
  - Acquisition of multispectral images with alternating retrieval from RGB and NIR sensors.
+   - RGB sensor (Source0)
+   - NIR sensor (Source1)
  - Handling of multiple payload formats, including Pleora-compressed data.
  - Saving raw binary images (.bin) for subsequent processing (RGB and NIR separately).
  - Real-time diagnostic output (frame rate, bandwidth, compression ratio).
  - Acquisition of calibration frames (BIAS, DARK, FLAT) for both sensors.
 
-## Calibration Frames
+## Calibration frames
 
 - BIAS: 1 µs exposure, lens shuttered (RGB and NIR).
 - DARK: 985 µs (RGB) and 2850 µs (NIR), lens shuttered.
