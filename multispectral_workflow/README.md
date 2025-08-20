@@ -15,17 +15,20 @@
 
 ## Calibration frames
 
-- BIAS: 1 µs exposure, lens shuttered (RGB and NIR).
-- DARK: 985 µs (RGB) and 2850 µs (NIR), lens shuttered.
-- FLAT: identical exposure settings as DARK, lens uncovered.
-- 20 images per category were acquired at full resolution (2048 × 1536 px), consistent with object images (plants).
+ - BIAS: 1 µs exposure, lens shuttered (RGB and NIR).
+ - DARK: 985 µs (RGB) and 2850 µs (NIR), lens shuttered.
+ - FLAT: identical exposure settings as DARK, lens uncovered.
+ - 20 images per category were acquired at full resolution (2048 × 1536 px), consistent with object images (plants).
 
 ## Requirements
 
-- Requires Python 3.x, Pleora eBUS SDK, OpenCV, and NumPy.
-- Ensure the Pleora eBUS SDK and drivers are installed on the host system.
-- Run the script to acquire paired RGB and NIR images.
-  
+ - Requires Python 3.x, Pleora eBUS SDK, OpenCV, and NumPy.
+ - Ensure the Pleora eBUS SDK and drivers are installed on the host system.
+ - Run the script to acquire paired RGB and NIR images.
+
+## Additional Script
+
+ - The script MS_preview.py enables real-time visualisation of the sensed object (e.g. plants).
 ---
 # MS data post-processing pipeline
  
