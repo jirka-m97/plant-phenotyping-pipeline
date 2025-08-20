@@ -11,6 +11,7 @@
  - Saving raw binary images (.bin) for subsequent processing (RGB and NIR separately).
  - Real-time diagnostic output (frame rate, bandwidth, compression ratio).
  - Acquisition of calibration frames (BIAS, DARK, FLAT) for both sensors.
+ - Output plant images are stored as .bin files (2048 × 1536 px) in the specified directory.
 
 ## Calibration frames
 
@@ -24,7 +25,6 @@
 - Requires Python 3.x, Pleora eBUS SDK, OpenCV, and NumPy.
 - Ensure the Pleora eBUS SDK and drivers are installed on the host system.
 - Run the script to acquire paired RGB and NIR images.
-- Output is saved as .bin files in the specified directory.
   
 ---
 # MS Data Post-processing Pipeline
