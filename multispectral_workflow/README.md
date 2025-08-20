@@ -27,7 +27,7 @@
 - Run the script to acquire paired RGB and NIR images.
   
 ---
-# MS Data Post-processing Pipeline
+# MS data post-processing pipeline
  
 1. **RGB image calibration**
    - Reads master BIAS, DARK, and FLAT frames (RGB only).
