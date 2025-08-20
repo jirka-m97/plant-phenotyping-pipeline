@@ -28,7 +28,7 @@
 
 ## Additional Script
 
- - The script MS_preview.py enables real-time visualisation of the sensed object (e.g. plants).
+ - The script MS_preview.py (in `/multispectral_workflow/`) enables real-time visualisation of the sensed object (e.g. plants).
 ---
 # MS data post-processing pipeline
  
@@ -57,13 +57,13 @@
 
 6. **Plant segmentation (manual, without segmentator – applicable to *Cucumis sativus* L., *Solanum lycopersicum* L., *Lactuca sativa* L., and potentially other untested plant species)**
    - Creates a binary mask using the MATLAB Image Segmenter app (Graph Cut tool).
-   - Script: MS_pipeline_v8.m
+   - Script: MS_pipeline_v8.m (in `/multispectral_workflow/`)
 
 7. **Plant segmentation (automated, with segmentator – *Cucumis sativus* only)**
    - Loads the pre-trained ResNet-50 semantic segmentation model (cucSegNDVI_v7.mat).
    - Generates a binary plant mask.
    - Refines the mask by removing small objects and applying NDVI-based thresholds to exclude background, soil, and artefacts.
-   - Script: MS_pipeline_v8_cuc.m
+   - Script: MS_pipeline_v8_cuc.m (in `/multispectral_workflow/`)
 
 8. **NDVI for plant pixels only**
    - Applies the refined plant mask to retain only valid plant pixels.
@@ -97,6 +97,6 @@
 
    - All variables are created in the MATLAB base workspace (useful for debugging).
    - Chip coordinates are fixed by default but can be adjusted if the test chart position changes.
-   - The script segmentator_training.m includes an additional routine for retraining the automated segmentation model.
+   - The script segmentator_training.m (in `/multispectral_workflow/`) includes an additional routine for retraining the automated segmentation model.
 
 
