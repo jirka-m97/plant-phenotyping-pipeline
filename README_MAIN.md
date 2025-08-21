@@ -1,4 +1,4 @@
-# Plant phenotyping platform 
+# Multifunctional platform for plant phenotyping: multispectral and photogrammetric workflows
 
 This repository contains software developed for a lab-scale prototype of a multifunctional robotic system for non-destructive plant phenotyping, created at the Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague.  
 
@@ -10,19 +10,17 @@ The repository is intended as a resource for researchers and engineers in plant 
 
 ## Features
 
-### 1. Robot and turntable control
-- Control algorithms for the robotic arm (serving as a sensor carrier for multispectral and industrial cameras) and the custom-built motorised turntable.
-- Accurate synchronisation of plant positioning with sensor operation, ensuring consistency across repeated measurements.
-- Flexible sensor positioning within the working space, enabling reproducible measurement conditions across diverse phenotyping tasks.
-
-### 2. Multispectral analysis
-- Multispectral camera control routines enabling automated RGB and NIR image acquisition, data management, and storage.
+### 1. Multispectral analysis
+- Multispectral camera control routines enabling automated RGB and NIR image acquisition, data management, and storage.  
 - Processing pipelines for handling multispectral datasets.  
 - Implementation of vegetation index (NDVI) computation to assess plant vitality and stress status.  
 - Implementation of an automatic image segmentation module (Deeplab v3+ with backbone ResNet-50) for reliable separation of plant material from the background prior to analysis.  
 
-### 3. Photogrammetric analysis
-- Software for industrial RGB camera operation and automated RGB image acquisition.  
+### 2. Photogrammetric analysis
+- Control algorithms for the robotic arm (serving as a sensor carrier for industrial RGB cameras) and the custom-built motorised turntable.  
+- Accurate synchronisation of plant positioning with sensor operation, ensuring consistency across repeated measurements.  
+- Flexible sensor positioning within the working space, enabling reproducible measurement conditions across diverse phenotyping tasks.  
+- Software for industrial RGB camera operation and automated image acquisition.  
 - Integration with [the Metashape API](https://www.agisoft.com/pdf/metashape_python_api_2_0_0.pdf) for three-dimensional plant reconstruction, enabling detailed analysis of morphology and growth dynamics.  
 
 ---
