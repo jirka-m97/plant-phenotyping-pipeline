@@ -1,4 +1,4 @@
-# Photogrammetric Analysis Pipeline
+# Photogrammetric analysis pipeline
 
 This repository contains the Python script `fotogramm_analysis.py`, which automates a complete photogrammetric acquisition workflow by integrating robotic positioning, camera control, automated image capture, and QR-based sample identification. The system was designed for controlled imaging of plants with the purpose of generating structured datasets suitable for three-dimensional reconstruction and advanced phenotyping studies.
 
@@ -16,7 +16,7 @@ A QR code placed on the cuvette containing the plant is captured at the beginnin
 
 ---
 
-## Key Features
+## Key features
 
 - Robotic arm control via serial communication with high-level textual commands converted by the Teensy 4.1 microcontroller
 - Motorised turntable control with Arduino firmware (Arduino IDE or `arduino-cli`) for zero positioning and continuous rotation  
@@ -27,7 +27,7 @@ A QR code placed on the cuvette containing the plant is captured at the beginnin
 
 ---
 
-## Software Requirements
+## Software requirements
 
 - Python: version 3.9 – 3.11 (Windows environment recommended)  
 - Drivers:  
@@ -37,7 +37,7 @@ A QR code placed on the cuvette containing the plant is captured at the beginnin
 - Daheng Galaxy SDK (with `gxipy` Python binding and necessary shared libraries)  
 - ZBar system library (required by `pyzbar` for QR code decoding)  
 
-### Python Packages
+### Python packages
 
 Installable with `pip`:  
 - `opencv-python` (image handling)
@@ -51,16 +51,18 @@ Installable with `pip`:
 - `gxipy`  
 
 ---
-## Local Modules
+## Local modules and external scripts
 
-Two local modules must be present in the same directory:  
+Two local modules and two external Arduino sketches must be present in the same directory:  
 
-- `arduino_upload.py` → provides `upload_arduino` function for flashing Arduino sketches  
-- `single_capture.py` → provides `capture_single_image` function for camera operation and frame saving  
+- arduino_upload.py → provides the function upload_arduino for flashing Arduino sketches  
+- single_capture.py → provides the function capture_single_image for camera operation and frame saving  
+- turntable_continuous.ino → Arduino sketch for continuous rotation of the turntable  
+- turntable_zero.ino → Arduino sketch for setting the turntable to its zero position    
 
 ---
 
-## Workflow Summary
+## Workflow summary
 
 1. Zeroing: Upload the Arduino sketch that sets the turntable to its zero position.  
 2. QR capture: Move the robotic arm into the QR pose, capture the QR code image at 180 ms exposure, and decode it to generate a target directory.  
@@ -70,7 +72,7 @@ Two local modules must be present in the same directory:
 
 ---
 
-## Data Organisation
+## Data organisation
 
 - Each dataset is stored in a uniquely generated directory, named according to the decoded QR string and timestamp.  
 - Filenames follow a consistent zero-padded convention (e.g. `Img_001.jpg`, `Img_002.jpg`), ensuring proper ordering when sorted alphabetically.  
@@ -78,7 +80,7 @@ Two local modules must be present in the same directory:
 
 ---
 
-## Validation and Diagnostics
+## Validation and diagnostics
 
 - gxipy → `DeviceManager` can be used to detect connected cameras and verify serial numbers  
 - ZBar → check by importing `pyzbar` and verifying QR symbol availability  
