@@ -23,19 +23,18 @@ The repository is intended as a resource for researchers and engineers in plant 
 - Accurate synchronisation of plant positioning with sensor operation, ensuring consistency across repeated measurements.  
 - Flexible sensor positioning within the working space, enabling reproducible measurement conditions across diverse phenotyping tasks.  
 - Software for industrial RGB camera operation and automated image acquisition.  
-- Integration with [the Metashape API](https://www.agisoft.com/pdf/metashape_python_api_2_0_0.pdf) for three-dimensional plant reconstruction, enabling detailed analysis of morphology and growth dynamics.  
+- Integration with [the Metashape API](https://www.agisoft.com/pdf/metashape_python_api_2_0_0.pdf) was employed for three-dimensional reconstruction of plants, enabling detailed analysis of morphology and growth dynamics.  
 
 ---
 
 ## Structure
-- `/robot_and_turntable_control` – robotic arm and turntable control modules.  
-- `/multispectral_workflow` – tools for multispectral imaging, NDVI-based health assessment, and automatic segmentation.  
-- `/photogrammetry_workflow` – industrial RGB camera control and 3D reconstruction workflows.  
 
+- `/multispectral_workflow` – tools for multispectral imaging, automatic image segmentation, and subsequent NDVI-based plant health assessment.  
+- `/photogrammetry_workflow` – modules for robotic arm and motorised turntable control, operation of the industrial RGB camera, and workflows for three-dimensional plant reconstruction.  
 ---
 
 ## License
-This project is distributed under the Apache 2.0 Licence, which allows users to freely use, modify, and redistribute the software for both academic and commercial purposes, provided that proper attribution is given to the original authors. For the complete licence terms, please see the [LICENSE](./LICENSE) file.  
+All codes forming this project are distributed under the Apache 2.0 Licence, which allows users to freely use, modify, and redistribute the software for both academic and commercial purposes, provided that proper attribution is given to the original authors. For the complete licence terms, please see the [LICENSE](./LICENSE) file.  
 
 ---
 
