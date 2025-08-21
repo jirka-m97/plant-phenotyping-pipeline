@@ -7,7 +7,7 @@
 #define X_STP 2
 
 //A498
-int delayTime = 1810;  //48 s jedna otočka
+int delayTime = 1810;  
 int scanningTime = 2000;
 int total_steps = 13100;
 int one_step = total_steps;
@@ -28,8 +28,6 @@ void setup() {
   pinMode(X_DIR, OUTPUT); pinMode(X_STP,OUTPUT);
   pinMode(EN, OUTPUT);
   digitalWrite(EN,HIGH);
-  //delay(2000);
-  //digitalWrite(EN,LOW);
 }
 
 void loop() {
