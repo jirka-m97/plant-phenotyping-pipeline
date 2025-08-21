@@ -41,5 +41,53 @@ A QR code placed on the cuvette containing the plant is captured at the beginnin
 
 Installable with `pip`:  
 
-```bash
-pip install opencv-python pillow pyserial pyzbar numpy
+### Supplied directly with the Galaxy SDK
+
+- `gxipy`  
+
+---
+
+## Local Modules
+
+Two local modules must be present in the same directory:  
+
+- `arduino_upload.py` → provides `upload_arduino` function for flashing Arduino sketches  
+- `single_capture.py` → provides `capture_single_image` function for camera operation and frame saving  
+
+---
+
+## Workflow Summary
+
+1. **Zeroing**: Upload the Arduino sketch that sets the turntable to its zero position.  
+2. **QR capture**: Move the robotic arm into the QR pose, capture the QR code image at 180 ms exposure, and decode it to generate a target directory.  
+3. **Continuous rotation**: Upload the Arduino sketch for continuous rotation of the turntable.  
+4. **Image acquisition**: Move the robotic arm through predefined poses. At each pose, images are captured according to exposure and timing parameters.  
+5. **Final positioning**: After acquisition, the arm is moved to its final pose, the serial port is closed, and resources are released.  
+
+---
+
+## Data Organisation
+
+- Each dataset is stored in a uniquely generated directory, named according to the decoded QR string and timestamp.  
+- Filenames follow a consistent **zero-padded convention** (e.g. `Img_001.jpg`, `Img_002.jpg`), ensuring proper ordering when sorted alphabetically.  
+- This organisation guarantees that every dataset is unequivocally linked to the correct plant and is ready for downstream photogrammetric reconstruction.  
+
+---
+
+## Validation and Diagnostics
+
+- **gxipy** → `DeviceManager` can be used to detect connected cameras and verify serial numbers  
+- **ZBar** → check by importing `pyzbar` and verifying QR symbol availability  
+- **pyserial** → `list_ports` can be used to display available COM devices  
+- **Environment variables** → ensure that PATH includes locations of the Galaxy SDK and ZBar libraries  
+
+---
+
+## Applications
+
+This workflow provides a robust pipeline for:  
+
+- **Photogrammetric reconstruction** of plants in three dimensions  
+- **Phenotyping studies** requiring accurate, repeatable, and traceable datasets  
+- **Automated imaging experiments** demanding reproducibility without manual intervention  
+
