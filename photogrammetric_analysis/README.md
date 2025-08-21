@@ -53,12 +53,12 @@ Installable with `pip`:
 ---
 ## Local modules and external scripts
 
-Two local modules and two external Arduino sketches must be present in the same directory:  
+Two local modules and two external Arduino sketches must be present in the same directory  
 
 - arduino_upload.py → provides the function upload_arduino for flashing Arduino sketches  
-- single_capture.py → provides the function capture_single_image for camera operation and frame saving  
+- single_capture.py → provides the function capture_single_image for camera operation and frame saving  (the folder "Fotogram_source_data" must be created)  
 - turntable_continuous.ino → Arduino sketch for continuous rotation of the turntable  
-- turntable_zero.ino → Arduino sketch for setting the turntable to its zero position    
+- turntable_zero.ino → Arduino sketch for setting the turntable to its zero position
 
 ---
 
