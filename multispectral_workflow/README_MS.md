@@ -1,4 +1,4 @@
-# MS camera control and data acquisition
+# Multispectral analysis pipeline
 ## Core functionality
 
  - Automatic device detection and connection via the GigE Vision interface.
