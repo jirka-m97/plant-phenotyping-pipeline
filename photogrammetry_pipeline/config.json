@@ -1,22 +1,5 @@
-/*
- =========================================================================
- Configuration File for 3D Reconstruction Workflow (JSON, en-GB)
- Authors: Jiří Mach (UCT Prague, Faculty of Food and Biochemical Technology,
-                     Laboratory of Bioengineering)
- Licence: Apache 2.0
- Date: 2025-09-18
- Description:
-   Defines user-adjustable parameters for the automated photogrammetry
-   pipeline. Includes:
-     - User inputs (number of folders/images, project name, tweak values)
-     - Paths to source images, results, control point coordinates,
-       and camera calibration file
-     - Cylinder parameters for model cutting
-     - Post-processing settings (smoothing, component size, hole closing)
- =========================================================================
-*/
-
-{"_1st_section": "===User inputs===",
+{"__header": "Configuration file for 3D Reconstruction Workflow\nAuthors: Jiří Mach (UCT Prague, FPBT, Laboratory of Bioengineering)\nLicence: Apache 2.0\nDate: 2025-09-18\nDescription: Defines user-adjustable parameters for the automated photogrammetry pipeline.",
+ "_1st_section": "===User inputs===",
   "FOLDER_AMOUNT": 2,
   "IMAGE_AMOUNT": 361,
   "TWEAK_1": null,
@@ -42,5 +25,6 @@
   "COMPONENT_SIZE": 100000,
   "HOLES_SIZE": 100
 }
+
 
 
