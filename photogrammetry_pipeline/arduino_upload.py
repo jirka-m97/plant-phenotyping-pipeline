@@ -1,7 +1,7 @@
 import subprocess
 
-def upload_arduino(arduino_file, port="COM5", fqbn="arduino:avr:uno", arduino_cli_dir=r"C:\Users\Student\Desktop\Arduino_cli"):
-    arduino_cli_path = arduino_cli_dir + r"\arduino-cli.exe"
+def upload_arduino(arduino_file, port="COM5", fqbn="arduino:avr:uno", arduino_cli_dir=r".\Arduino_cli"):
+    arduino_cli_path = arduino_cli_dir + r".\arduino-cli.exe"
 
     def run_command(cmd, cwd):
         result = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True)
