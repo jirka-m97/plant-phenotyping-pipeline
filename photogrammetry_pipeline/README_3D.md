@@ -126,16 +126,16 @@ All key parameters are defined in a central configuration file `config.json`, al
 #### Plant3D
 - Powered by the **Agisoft Metashape Python API** and modules including `json`, `os`, `math`, `traceback`, and `requests`.  
 - Processing steps:  
-  1. **Load configuration** and validate parameters.  
-  1. **Camera calibration** – import XML with lens parameters.  
-  1. **Image alignment** – generate sparse cloud and estimate camera poses.  
-  1. **Reference-based anchoring** – apply metric reference markers.  
-  1. **Depth map and dense cloud generation**.  
-  1. **Mesh reconstruction** with optional tuning (`TWEAK_1`, `TWEAK_2`).  
-  1. **Cylindrical cropping** – remove cuvette geometry and background.  
-  1. **Post-processing** – smoothing, filtering, hole filling.  
-  1. **Morphometrics** – compute object height, surface area, volume.  
-  1. **Export results** and send **notifications**.  
+1. **Load configuration** and validate parameters.  
+1. **Camera calibration** – import XML with lens parameters.  
+1. **Image alignment** – generate sparse cloud and estimate camera poses.  
+1. **Reference-based anchoring** – apply metric reference markers.  
+1. **Depth map and dense cloud generation**.  
+1. **Mesh reconstruction** with optional tuning (`TWEAK_1`, `TWEAK_2`).  
+1. **Cylindrical cropping** – remove cuvette geometry and background.  
+1. **Post-processing** – smoothing, filtering, hole filling.  
+1. **Morphometrics** – compute object height, surface area, volume.  
+1. **Export results** and send **notifications**.  
 
 
 ## Applications
