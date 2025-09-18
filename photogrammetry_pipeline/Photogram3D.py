@@ -1,7 +1,8 @@
 # =========================================================================
 # Folder Content Monitoring Script (Python, en-GB)
 # Author: Jiří Mach
-# Institution: UCT Prague, Laboratory of Bioengineering
+# Institution: UCT Prague, Faculty of Food and Biochemical Technology,
+#              Laboratory of Bioengineering
 # Licence: Apache 2.0
 # Date: 2025-09-18
 # Description:
@@ -53,4 +54,5 @@ def trigger_analysis():
 # Path to the monitored folder (update to your actual path)
 folder_path = r".\source_data"
 monitor_folder(folder_path)
+
 
