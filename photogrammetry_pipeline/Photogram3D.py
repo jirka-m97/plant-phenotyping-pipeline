@@ -1,3 +1,16 @@
+# =========================================================================
+# Folder Content Monitoring Script (Python, en-GB)
+# Author: Jiří Mach
+# Institution: UCT Prague, Laboratory of Bioengineering
+# Licence: Apache 2.0
+# Date: 2025-09-18
+# Description:
+#   Continuously monitors a target folder for the expected number of
+#   subfolders and image files. When the defined structure is satisfied,
+#   the script automatically triggers Plant3D.py to launch the
+#   photogrammetric reconstruction workflow.
+# =========================================================================
+
 # Import libraries
 import os
 import time
@@ -33,10 +46,11 @@ def trigger_analysis():
     print("✅ Starting photogrammetry analysis...")
 
     # Run Plant3D.py located in the same directory
-    python_path = r'C:\Program Files\Python39\python.exe'
+    python_path = r'.\Python39\python.exe'
     script_path = os.path.join(os.path.dirname(__file__), "Plant3D.py")
     subprocess.run([python_path, script_path])  
 
 # Path to the monitored folder (update to your actual path)
 folder_path = r".\source_data"
 monitor_folder(folder_path)
+
