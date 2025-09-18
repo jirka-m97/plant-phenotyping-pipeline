@@ -36,8 +36,8 @@ SERIAL_PORT = "COM4"
 IMG_AMOUNT = 40 # For reduced set 120 images
 #ACQ_PAUSE = 0.25 # For full set 360 images
 ACQ_PAUSE = 0.475 # For reduced set 120 images
-#P_POSES_ONLY = r"C:\AR4\AR4 HMI interface 3.0 exe\P_fullset_360" # For full set 360 images
-P_POSES_ONLY = r"C:\AR4\AR4 HMI interface 3.0 exe\P_redset_120" # For reduced set 120 images
+#P_POSES_ONLY = r".\P_fullset_360" # For full set 360 images
+P_POSES_ONLY = r".\P_redset_120" # For reduced set 120 images
 CAMERA_SCRIPT_SELFCONTAINED = False
 
 ## Last pose - END
