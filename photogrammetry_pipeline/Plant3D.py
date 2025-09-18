@@ -1,3 +1,22 @@
+# =========================================================================
+# Plant3D — Metashape-Based 3D Reconstruction Pipeline (Python, en-GB)
+# Author: Jiří Mach
+# Institution: UCT Prague, Laboratory of Bioengineering
+# Licence: Apache 2.0
+# Date: 2025-09-18
+# Description:
+#   Loads and validates config, iterates datasets, and runs a full
+#   Metashape workflow: camera calibration import, image alignment,
+#   depth-map generation, mesh reconstruction, optional model switch,
+#   chunk duplication, cylindrical crop, smoothing, component removal,
+#   hole closing, and morphometric reporting (height/surface/volume).
+#   Saves the project incrementally and posts a completion notification
+#   via a webhook (requests).
+# Dependencies:
+#   Python stdlib: os, time, json, math, traceback
+#   Third-party: Metashape, requests, tkinter
+# =========================================================================
+
 import os
 import math
 import time
@@ -8,7 +27,7 @@ import tkinter as tk
 import traceback
 
 # ==========================
-# Load & validate config
+# Load and validate config
 # ==========================
 with open("config.json", "r", encoding="utf-8") as f:
     config = json.load(f)
@@ -449,4 +468,5 @@ doc.save(output_project_path)
 e = time.time()
 duration = e - s
 notification(project_name, round(duration,3), round(duration/60,4), round(duration/3600,4))
+
 
