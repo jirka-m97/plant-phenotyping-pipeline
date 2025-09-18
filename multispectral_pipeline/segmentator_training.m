@@ -1,10 +1,24 @@
+% =========================================================================
+% Plant Segmentation with DeepLab v3+ (MATLAB script, en-GB)
+% Author: Jiří Mach
+% Institution: UCT Prague, Laboratory of Bioengineering
+% Licence: Apache 2.0
+% Date: 2025-09-18
+% Description:
+%   Trains and evaluates a DeepLab v3+ network with ResNet-50 backbone
+%   for semantic segmentation of plant imagery. Includes dataset loading,
+%   data augmentation, train–test split, network training, prediction,
+%   visualisation, and evaluation with standard metrics.
+% =========================================================================
+%%
+
 %% Clean workspace
 clear all 
 clc
 
 %% === Folder paths ===
-imageDir = fullfile("D:\Scripts\Matlab\ObjDet_RGB");         % images
-labelDir = fullfile("D:\Scripts\Matlab\ObjDet_mask_png");    % masks
+imageDir = fullfile(".\ObjDet_RGB");         % images
+labelDir = fullfile(".\ObjDet_mask_png");    % masks
 
 %% === Dataset loading ===
 imds = imageDatastore(imageDir, 'FileExtensions', '.png');
