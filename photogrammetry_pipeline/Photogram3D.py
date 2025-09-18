@@ -1,21 +1,16 @@
-# Import knihoven
+# Import libraries
 import os
 import time
-import json
 import subprocess
 
-## Načtení user dat z json souboru
-with open(r"Z:\Data\Photogrammetry\Data_processing\Fotogram3D_v2\_internal\config.json", "r") as f:
-    config = json.load(f)
+## Expected counts of folders and images
+folder_amount = 2      # Example: number of subfolders
+image_amount = 361     # Example: number of images per subfolder
 
-## Definice počtu souborů a snímků
-folder_amount = config.get("FOLDER_AMOUNT", None)
-image_amount = config.get("IMAGE_AMOUNT", None)
-
-## Definice funkcí
+## Define functions
 def monitor_folder(folder_path):
     while True:
-        # Získá pouze složky (adresáře)
+        # List only subfolders (directories)
         subfolders = [f for f in os.listdir(folder_path)
                       if os.path.isdir(os.path.join(folder_path, f))]
         
@@ -35,13 +30,13 @@ def monitor_folder(folder_path):
         time.sleep(10)
 
 def trigger_analysis():
-    print("✅ Spouštím fotogrammetrickou analýzu...")
+    print("✅ Starting photogrammetry analysis...")
 
-    # Spustí Plant3D.py ve stejném adresáři
+    # Run Plant3D.py located in the same directory
     python_path = r'C:\Program Files\Python39\python.exe'
     script_path = os.path.join(os.path.dirname(__file__), "Plant3D.py")
     subprocess.run([python_path, script_path])  
 
-# Změň na skutečnou cestu k síťové složce
-folder_path = config.get("SOURCE_FOLDER_PATH", None)
+# Path to the monitored folder (update to your actual path)
+folder_path = r".\source_data"
 monitor_folder(folder_path)
