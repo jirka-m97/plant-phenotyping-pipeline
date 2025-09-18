@@ -1,3 +1,17 @@
+# =========================================================================
+# RGB Camera Preview Application (Python script, en-GB)
+# Author: Jiří Mach
+# Institution: UCT Prague, Laboratory of Bioengineering
+# Licence: Apache 2.0
+# Date: 2025-09-18
+# Description:
+#   Provides live RGB preview from a connected camera via the eBUS SDK.
+#   The script automatically detects the first available device, opens
+#   a stream, configures acquisition parameters, and displays a Bayer-
+#   demosaiced RGB preview window using OpenCV. User can exit the preview
+#   by pressing any key or closing the window.
+# =========================================================================
+
 import os
 import cv2
 import numpy as np
@@ -29,7 +43,6 @@ def auto_select_first_device():
             if device_info is not None:
                 return device_info.GetConnectionID()
     return None
-
 
 def connect_to_device(connection_ID):
     print("Connecting to device...")
