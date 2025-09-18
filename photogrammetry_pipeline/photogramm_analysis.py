@@ -1,3 +1,23 @@
+# =========================================================================
+# Photogrammetry Acquisition Orchestrator (Python, en-GB)
+# Author: Jiří Mach
+# Institution: UCT Prague, Faculty of Food and Biochemical Technology, Laboratory of Bioengineering
+# Licence: Apache 2.0
+# Date: 2025-09-18
+# Description:
+#   Orchestrates end-to-end acquisition for plant photogrammetry:
+#   - decodes QR (pyzbar/OpenCV), creates time-stamped dataset folder,
+#   - uploads Arduino sketches (zero / continuous) via CLI helper,
+#   - drives AR4 robot over serial (command conversion + handshaking),
+#   - captures QR and multi-view images (gxipy / PIL) with exposure control,
+#   - manages pose programs (pickle), indexing, and basic logging.
+# Dependencies:
+#   Python stdlib: os, re, sys, time, pickle, shutil, subprocess
+#   Third-party: OpenCV (cv2), numpy, pyzbar, pyserial, gxipy, Pillow (PIL)
+#   Local modules: arduino_upload.py, single_capture.py
+# =========================================================================
+
+
 import os
 import re
 import cv2
@@ -13,7 +33,6 @@ from pyzbar.pyzbar import decode
 
 from arduino_upload import upload_arduino
 from single_capture import capture_single_image
-
 
 ### === Path and parameters setup ===
 
@@ -44,7 +63,6 @@ CAMERA_SCRIPT_SELFCONTAINED = False
 P_END = r".\P_end"
 
 TEMP_QR_FOLDER = r".\temp_qr"
-
 
 # === QR code: processing ===
 def decode_qr(image_path):
@@ -129,7 +147,6 @@ def run_camera_qr(output_folder):
         print("[Error] Failed to capture QR image.")
         return False
     return True
-
 
 # === Camera + multiple images ===
 def capture_multiple_images(folder, count, exposure_time):
