@@ -1,7 +1,7 @@
 % =========================================================================
 % Plant Segmentation with DeepLab v3+ (MATLAB script, en-GB)
 % Author: Jiří Mach
-% Institution: UCT Prague, Laboratory of Bioengineering
+% Institution: UCT Prague, Faculty of Food and Biochemical Technology, Laboratory of Bioengineering
 % Licence: Apache 2.0
 % Date: 2025-09-18
 % Description:
