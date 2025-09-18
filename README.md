@@ -27,21 +27,10 @@ The repository is intended as a resource for researchers and engineers in plant 
 
 ---
 
-## Structure
+## Repository structure
 
 - `/multispectral_workflow` – tools for multispectral imaging, automatic image segmentation, and subsequent NDVI-based plant health assessment.  
 - `/photogrammetry_workflow` – modules for robotic arm and motorised turntable control, operation of the industrial RGB camera, and workflows for three-dimensional plant reconstruction.  
----
-
-## License
-All codes forming this project are distributed under the Apache 2.0 Licence, which allows users to freely use, modify, and redistribute the software for both academic and commercial purposes, provided that proper attribution is given to the original authors. For the complete licence terms, please see the [LICENSE](./LICENSE) file.  
-
----
-
-## Acknowledgement
-Developed at the Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague,  
-in collaboration with the Department of Radioelectronics, Faculty of Electrical Engineering, Czech Technical University in Prague,  
-and the Department of Forensic Experts in Transportation, Faculty of Transportation Sciences, Czech Technical University in Prague.  
 
 ---
 
@@ -64,6 +53,11 @@ The multifunctional platform integrates multispectral imaging and photogrammetri
 
 --- 
 
+## Acknowledgement
+Developed at the Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague,  
+in collaboration with the Department of Radioelectronics, Faculty of Electrical Engineering, Czech Technical University in Prague,  
+and the Department of Forensic Experts in Transportation, Faculty of Transportation Sciences, Czech Technical University in Prague.  
+
 We also acknowledge the technical support provided by  
 - [JAI Support](https://support.jai.com/hc/en-us) for the multispectral camera control, and  
 - [Agisoft Metashape Support](https://www.agisoftmetashape.com/support/?srsltid=AfmBOopHtxRqLW6budwORrpX34QVnSkSQnkvERqKRR9fFE1lLZ1-gCzI) for guidance on setting advanced parameters of the evaluation process in photogrammetric workflows.  
@@ -74,3 +68,7 @@ We also acknowledge the technical support provided by
 Mach, J., et al., Development of low-cost multifunctional robotic apparatus for high-throughput plant phenotyping. Smart Agricultural Technology, 2024. 9: p. 17. [https://doi.org/10.1016/j.atech.2024.100654](https://doi.org/10.1016/j.atech.2024.100654)
 
 ---
+
+## License
+All codes forming this project are distributed under the Apache 2.0 Licence, which allows users to freely use, modify, and redistribute the software for both academic and commercial purposes, provided that proper attribution is given to the original authors. For the complete licence terms, please see the [LICENSE](./LICENSE) file.  
+
