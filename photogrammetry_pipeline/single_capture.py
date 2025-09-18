@@ -1,3 +1,20 @@
+# =========================================================================
+# Single Image Capture Utility (Python, en-GB)
+# Author: Jiří Mach
+# Institution: UCT Prague, Faculty of Food and Biochemical Technology,
+#              Laboratory of Bioengineering
+# Licence: Apache 2.0
+# Date: 2025-09-18
+# Description:
+#   Provides a helper function `capture_single_image()` for grabbing one
+#   RGB frame from a Daheng camera using the gxipy SDK. The captured frame
+#   is converted (gxipy → NumPy → Pillow) and saved as a JPEG with a
+#   sequential index in the specified output folder.
+# Dependencies:
+#   Python stdlib: os, time
+#   Third-party: gxipy (Daheng SDK), Pillow (PIL)
+# =========================================================================
+
 import os
 import time
 import gxipy as gx
