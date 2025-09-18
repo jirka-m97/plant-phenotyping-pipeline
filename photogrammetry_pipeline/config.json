@@ -3,14 +3,14 @@
   "IMAGE_AMOUNT": 361,
   "TWEAK_1": null,
   "TWEAK_2": null,
-  "PROJECT_NAME": "250917_test2",
+  "PROJECT_NAME": "YYMMDD_test",
   "_2nd_section": "===Paths to source data and results===",
-  "SOURCE_FOLDER_PATH": "Z:/Data/Photogrammetry/Case_study", 
-  "RESULTS_FOLDER_PATH": "Z:/Data/Photogrammetry/Data_processing/Results",
+  "SOURCE_FOLDER_PATH": "./source_folder", 
+  "RESULTS_FOLDER_PATH": "./results_folder",
   "_3rd_section": "===Paths to cordinates (control points)===",
-  "CONTROL_POINTS_COORDINATES": "C:/Metashape/coordinates.txt",
+  "CONTROL_POINTS_COORDINATES": "./coordinates.txt",
   "_4th_section": "===Camera calibration parameters===",
-  "CALIBRATION_FILE": "C:/Users/Student/Desktop/Working_folder/calib_calibrationField.xml",
+  "CALIBRATION_FILE": "./calib_calibrationField.xml",
   "5th_section": "===Model cutting (cilinder definition)===",
   "ADJUSTED_MODEL_NAME": "adjusted",
   "CENTER_X": 0,
@@ -23,4 +23,5 @@
   "SMOOTHING": 1,
   "COMPONENT_SIZE": 100000,
   "HOLES_SIZE": 100
+
 }
