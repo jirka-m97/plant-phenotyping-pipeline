@@ -1,3 +1,17 @@
+// =========================================================================
+// Turntable Zero Position Control with Hall Sensor (Arduino, en-GB)
+// Author: Jiří Mach
+// Institution: UCT Prague, Faculty of Food and Biochemical Technology,
+//              Laboratory of Bioengineering
+// Licence: Apache 2.0
+// Date: 2025-09-18
+// Description:
+//   Arduino sketch to move a stepper-driven turntable to its zero position
+//   using an A4988 driver and a Hall effect sensor as a stop signal. The
+//   stepper is rotated until the Hall sensor is triggered, after which the
+//   motor is disabled to lock the reference position.
+// =========================================================================
+
 // Pins_turntable definition
 #define EN 8
 #define X_DIR 5
