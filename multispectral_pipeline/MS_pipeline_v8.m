@@ -24,13 +24,17 @@ height             = 1536;
 bitDepth           = 'uint8';
 
 % Single frames
-pathRGB            = "V:\\Data\\MS_analysis\\_testing\\Img_1_RGB.bin";
-pathNIR            = "V:\\Data\\MS_analysis\\_testing\\Img_1_NIR.bin";
+pathRGB            = ".\_testing\Img_1_RGB.bin";
+pathNIR            = ".\_testing\Img_1_NIR.bin";
+
+% Segmentation (pre-trained network with 'plant' class)
+segModelPath       = ".\cucSegNDVI_v7.mat";
+segVarName         = "net_resnet50_finetune_wider";
 
 % Calibration folders (masters are averaged from *.bin filtered by keyword)
-folder_biasRGB     = "V:\\Data\\MS_analysis\\_testing\\Bias";
-folder_darkRGB     = "V:\\Data\\MS_analysis\\_testing\\Dark";
-folder_flatRGB     = "V:\\Data\\MS_analysis\\_testing\\Flat";
+folder_biasRGB     = ".\_testing\Bias";
+folder_darkRGB     = ".\_testing\Dark";
+folder_flatRGB     = ".\_testing\Flat";
 
 folder_biasNIR     = folder_biasRGB;
 folder_darkNIR     = folder_darkRGB;
@@ -168,6 +172,13 @@ if ~evalin('base','exist(''Mask'',''var'')')
     warning('Mask was not exported from imageSegmenter. Please export variable "Mask" and re‑run the next block.');
 end
 Mask = evalin('base','Mask');
+
+%% ============ PLANT SEGMENTATION (CNN-based) ============
+tmp = load(segModelPath, segVarName);
+net = tmp.(segVarName);
+
+classes = semanticseg(im2uint8(rgbWB), net);
+Mask    = (classes == 'plant');
 
 %% ============ MASK REFINEMENT & NDVI STATS ============
 % 1) Remove small objects from the raw mask
