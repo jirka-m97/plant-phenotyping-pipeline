@@ -2,9 +2,10 @@
 camera_control_and_data_acqisitioin.py
 --------------------------------------
 
-Author: [Jiří Mach]
-Date: [2025-08-19]
-License: [Apache 2.0]
+Author: Jiří Mach 
+Acknowledgement: Developed with guidance from JAI Support
+Date: 2025-08-19
+License: Apache 2.0
 
 Description:
 This script provides automated control and data acquisition for the 
@@ -63,7 +64,7 @@ import eBUS as eb
 import PvSampleUtils as psu
 
 BUFFER_COUNT = 16
-IMAGES_PATH = r"Z:\Data\MS_analysis\_testing"
+IMAGES_PATH = r".\_testing"
 
 frame_count_setting = 1 
 # frame_count_setting = 20 # for BIAS, DARK, FLAT
