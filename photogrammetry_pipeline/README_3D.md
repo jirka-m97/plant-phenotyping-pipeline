@@ -89,6 +89,55 @@ Two local modules and two external Arduino sketches must be present in the same 
 
 ---
 
+## Image Data Post-Processing Pipeline
+
+This workflow provides a **fully automated and robust pipeline for photogrammetric data processing**, designed to minimise manual intervention while ensuring reproducibility and accuracy when handling large image datasets.  
+
+The pipeline consists of two cooperating console applications:  
+
+- **Photogram3D** – monitors the input directory, verifies dataset completeness, and initiates processing.  
+- **Plant3D** – performs photogrammetric reconstruction using the Agisoft Metashape Python API and supporting libraries.  
+
+All key parameters are defined in a central configuration file `config.json`, allowing flexible adjustment of processing conditions without modifying the codebase.  
+
+---
+
+### Key Features
+- **Automated data monitoring** – verifies the number of subfolders and images in the input directory.  
+- **Safe execution** – processing starts only once datasets are confirmed complete.  
+- **Support for external camera calibration** – improved accuracy via imported XML calibration file (calib_calibrationField.xml).  
+- **Reference-based alignment** – use of coded markers and known coordinates for metric anchoring.  
+- **Automated model cropping** – cylindrical cropping to remove artefacts (e.g. cuvettes).  
+- **Integrated post-processing** – smoothing, noise removal, hole filling.  
+- **Morphometric analysis** – calculation of height, surface area, and volume.  
+- **Automated reports and notifications** – structured outputs and webhook alerts (e.g. Discord).  
+
+---
+
+### Architecture
+
+#### Photogram3D
+- Built with standard Python libraries (`os`, `time`, `json`, `subprocess`).  
+- Continuously monitors the input directory and checks:  
+  - `FOLDER_AMOUNT` – required number of subfolders.  
+  - `IMAGE_AMOUNT` – exact number of images per subfolder.  
+- Once the conditions are satisfied, **Plant3D** is launched automatically.  
+
+#### Plant3D
+- Powered by the **Agisoft Metashape Python API** and modules including `json`, `os`, `math`, `traceback`, and `requests`.  
+- Processing steps:  
+  1. **Load configuration** and validate parameters.  
+  2. **Camera calibration** – import XML with lens parameters.  
+  3. **Image alignment** – generate sparse cloud and estimate camera poses.  
+  4. **Reference-based anchoring** – apply metric reference markers.  
+  5. **Depth map and dense cloud generation**.  
+  6. **Mesh reconstruction** with optional tuning (`TWEAK_1`, `TWEAK_2`).  
+  7. **Cylindrical cropping** – remove cuvette geometry and background.  
+  8. **Post-processing** – smoothing, filtering, hole filling.  
+  9. **Morphometrics** – compute object height, surface area, volume.  
+  10. **Export results** and send **notifications**.  
+
+
 ## Applications
 
 This workflow provides a robust pipeline for:  
