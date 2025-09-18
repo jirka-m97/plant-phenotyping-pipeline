@@ -1,10 +1,20 @@
 % =========================================================================
-% Multispectral NDVI Pipeline (script version, en‑GB)
-% Author: [Jiří Mach]
-% Institution: UCT Prague, Laboratory of Bioengineering
+% Multispectral NDVI Pipeline (script version, en-GB)
+% Authors: Jiří Mach, Lukáš Krauz
+% Institutions: 
+%   - UCT Prague, Laboratory of Bioengineering
+%   - Department of Radioelectronics, FEE, Czech Technical University in Prague
 % Licence: Apache 2.0
+% Date: 2025-09-18
+% Description:
+%   Implements a multispectral image processing workflow for plant NDVI 
+%   calculation. Includes radiometric calibration of RGB and NIR data, 
+%   reflectance correction using a calibration chart, NDVI computation, 
+%   and plant tissue segmentation (manual or CNN-based). Outputs include 
+%   calibrated imagery, NDVI maps, and statistical metrics.
 % =========================================================================
 %%
+
 clc; close all; clearvars;
 
 %% ============ CONFIG ============
