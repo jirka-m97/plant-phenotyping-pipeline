@@ -1,4 +1,4 @@
-# Multifunctional platform for plant phenotyping: multispectral and photogrammetric workflows
+# Multifunctional platform for plant phenotyping: multispectral and photogrammetric pipelines
 
 This repository contains software developed for a laboratory-scale prototype of a multifunctional robotic platform designed for non-destructive plant phenotyping at the Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague.  
 
