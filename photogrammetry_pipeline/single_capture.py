@@ -37,7 +37,7 @@ def capture_single_image(output_folder, index, exposure_time=50000.0):
     return True
 
 if __name__ == "__main__":
-    output_folder = r".\Fotogram_source_data"
+    output_folder = r".\photogram_source_data"
     os.makedirs(output_folder, exist_ok=True)
     
     # Call of the function with parameters, e.g. index=1 and exposure_time=50000.0
