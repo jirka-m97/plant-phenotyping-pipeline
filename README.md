@@ -43,6 +43,27 @@ Developed at the Laboratory of Bioengineering, Institute of Biotechnology, Unive
 in collaboration with the Department of Radioelectronics, Faculty of Electrical Engineering, Czech Technical University in Prague,  
 and the Department of Forensic Experts in Transportation, Faculty of Transportation Sciences, Czech Technical University in Prague.  
 
+---
+
+## Applications
+
+The multifunctional platform integrates multispectral imaging and photogrammetric reconstruction, enabling a wide range of experimental and applied use cases:
+
+### Multispectral analysis
+- **Plant health monitoring** – non-destructive detection of physiological stress through vegetation indices such as NDVI.  
+- **Assessment of abiotic stress responses** – evaluation of the influence of light quality, nutrient regimes, temperature, and water availability on plant vitality.  
+- **Biotic interaction studies** – monitoring the effects of microbial biostimulants or pathogens on leaf reflectance characteristics.  
+- **High-throughput screening** – systematic acquisition of spectral datasets under controlled and reproducible imaging conditions.  
+
+### 3D photogrammetry
+- **Morphological characterisation** – precise reconstruction of plant geometry for quantifying height, volume, and surface area.  
+- **Growth dynamics** – temporal monitoring of plant structure to assess developmental stages and stress-induced changes.  
+- **Phenotyping under controlled conditions** – reproducible, automated acquisition of structural datasets without manual intervention.  
+- **Quality control and validation** – use of reference markers and calibration procedures for metric accuracy and reproducibility.  
+- **Transferable workflows** – applicability beyond plant sciences, e.g. technical inspection of small components, materials testing, or educational demonstrations of photogrammetric methods.  
+
+--- 
+
 We also acknowledge the technical support provided by  
 - [JAI Support](https://support.jai.com/hc/en-us) for the multispectral camera control, and  
 - [Agisoft Metashape Support](https://www.agisoftmetashape.com/support/?srsltid=AfmBOopHtxRqLW6budwORrpX34QVnSkSQnkvERqKRR9fFE1lLZ1-gCzI) for guidance on setting advanced parameters of the evaluation process in photogrammetric workflows.  
