@@ -1,6 +1,8 @@
 % =========================================================================
 % Multispectral NDVI Pipeline (script version, en-GB)
-% Authors: Jiří Mach, Lukáš Krauz
+% Authors: 
+%   - Jiří Mach
+%   - Lukáš Krauz
 % Institutions: 
 %   - UCT Prague, Faculty of Food and Biochemical Technology, Laboratory of Bioengineering
 %   - Department of Radioelectronics, FEE, Czech Technical University in Prague
