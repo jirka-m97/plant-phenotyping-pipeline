@@ -1,7 +1,8 @@
 # =========================================================================
 # Plant3D — Metashape-Based 3D Reconstruction Pipeline (Python, en-GB)
 # Author: Jiří Mach
-# Institution: UCT Prague, Laboratory of Bioengineering
+# Institution: UCT Prague, Faculty of Food and Biochemical Technology,
+#              Laboratory of Bioengineering
 # Licence: Apache 2.0
 # Date: 2025-09-18
 # Description:
@@ -468,5 +469,6 @@ doc.save(output_project_path)
 e = time.time()
 duration = e - s
 notification(project_name, round(duration,3), round(duration/60,4), round(duration/3600,4))
+
 
 
