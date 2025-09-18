@@ -1,3 +1,17 @@
+// =========================================================================
+// Turntable Continuous Rotation Control (Arduino, en-GB)
+// Author: Jiří Mach
+// Institution: UCT Prague, Faculty of Food and Biochemical Technology,
+//              Laboratory of Bioengineering
+// Licence: Apache 2.0
+// Date: 2025-09-18
+// Description:
+//   Arduino sketch for continuous rotation of a stepper-driven turntable
+//   using an A4988 driver. The EN, DIR, and STEP pins are configured to
+//   generate pulses with a fixed delay time, driving the table to rotate
+//   endlessly in one direction.
+// =========================================================================
+
 #define EN 8
 
 //Direction pin
