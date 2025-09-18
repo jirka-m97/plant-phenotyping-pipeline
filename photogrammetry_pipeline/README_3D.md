@@ -105,7 +105,7 @@ All key parameters are defined in a central configuration file `config.json`, al
 ### Key Features
 - **Automated data monitoring** – verifies the number of subfolders and images in the input directory.  
 - **Safe execution** – processing starts only once datasets are confirmed complete.  
-- **Support for external camera calibration** – improved accuracy via imported XML calibration file (calib_calibrationField.xml).  
+- **Support for external camera calibration** – improved accuracy via imported XML calibration file `calib_calibrationField.xml`.  
 - **Reference-based alignment** – use of coded markers and known coordinates for metric anchoring.  
 - **Automated model cropping** – cylindrical cropping to remove artefacts (e.g. cuvettes).  
 - **Integrated post-processing** – smoothing, noise removal, hole filling.  
