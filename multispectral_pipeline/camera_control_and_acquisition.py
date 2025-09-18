@@ -4,6 +4,8 @@ camera_control_and_data_acqisitioin.py
 
 Author: Jiří Mach 
 Acknowledgement: Developed with guidance from JAI Support
+Institution: UCT Prague, Faculty of Food and Biochemical Technology,
+             Laboratory of Bioengineering
 Date: 2025-08-19
 License: Apache 2.0
 
