@@ -1,3 +1,18 @@
+<!-- =========================================================================
+ Camera Calibration File (XML, en-GB)
+ Authors: Jiří Mach (UCT Prague, Faculty of Food and Biochemical Technology,
+                     Laboratory of Bioengineering),
+          Zdeněk Svatý (Czech Technical University in Prague,
+                       Faculty of Transportation Sciences)
+ Licence: Apache 2.0
+ Date: 2025-05-06
+ Description:
+   Contains intrinsic parameters of the calibrated camera for use in
+   photogrammetric reconstruction. Includes image dimensions, focal length,
+   principal point, affinity and skew coefficients, radial and tangential
+   distortion terms, and calibration timestamp.
+ ========================================================================= -->
+
 <?xml version="1.0" encoding="UTF-8"?>
 <calibration>
   <projection>frame</projection>
