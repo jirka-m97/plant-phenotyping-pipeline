@@ -336,7 +336,7 @@ def compute_area_volume(model):
 # Notification
 # ---------------
 def notification(project_name, dur_s, dur_m, dur_h):
-    WEBHOOK_URL = "https://discord.com/api/webhooks/1329746190421725224/mjnH0ZQexKCy9OpuMGGJCvz8RLjDglI_0dyElEK0C9jKSXxSNRrs_q7hxYveSI7h42aE"
+    WEBHOOK_URL = "https://discord.com/api/webhooks/..."
     data = {"content": f'Project "{project_name}" finished successfully! Duration: {dur_s} s ({dur_m} m, {dur_h} h).'}
     try:
         response = requests.post(WEBHOOK_URL, json=data, timeout=10)
@@ -449,3 +449,4 @@ doc.save(output_project_path)
 e = time.time()
 duration = e - s
 notification(project_name, round(duration,3), round(duration/60,4), round(duration/3600,4))
+
