@@ -1,10 +1,20 @@
 % =========================================================================
 % Multispectral NDVI Pipeline (script version, en-GB)
-% Author: [Jiří Mach]
-% Institution: UCT Prague, Laboratory of Bioengineering
+% Authors: Jiří Mach, Lukáš Krauz
+% Institutions: 
+%   - UCT Prague, Laboratory of Bioengineering
+%   - Department of Radioelectronics, FEE, Czech Technical University in Prague
 % Licence: Apache 2.0
+% Date: 2025-09-18
+% Description:
+%   Implements a multispectral image processing workflow for plant NDVI 
+%   calculation. Includes radiometric calibration of RGB and NIR data, 
+%   reflectance correction using a calibration chart, NDVI computation, 
+%   and plant tissue segmentation (manual or CNN-based). Outputs include 
+%   calibrated imagery, NDVI maps, and statistical metrics.
 % =========================================================================
 %%
+
 clc; close all; clearvars;
 
 %% ============ CONFIG ============
@@ -14,13 +24,13 @@ height             = 1536;
 bitDepth           = 'uint8';
 
 % Single frames
-pathRGB            = "V:\Data\MS_analysis\_testing\Img_1_RGB.bin";
-pathNIR            = "V:\Data\MS_analysis\_testing\Img_1_NIR.bin";
+pathRGB            = ".\_testing\Img_1_RGB.bin";
+pathNIR            = ".\_testing\Img_1_NIR.bin";
 
 % Calibration folders (masters are averaged from *.bin filtered by keyword)
-folder_biasRGB     = "V:\Data\MS_analysis\_testing\Bias";
-folder_darkRGB     = "V:\Data\MS_analysis\_testing\Dark";
-folder_flatRGB     = "V:\Data\MS_analysis\_testing\Flat";
+folder_biasRGB     = ".\_testing\Bias";
+folder_darkRGB     = ".\_testing\Dark";
+folder_flatRGB     = ".\_testing\Flat";
 
 folder_biasNIR     = folder_biasRGB;
 folder_darkNIR     = folder_darkRGB;
