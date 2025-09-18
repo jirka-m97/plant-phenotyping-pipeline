@@ -1,3 +1,19 @@
+# =========================================================================
+# Arduino CLI Compile & Upload Helper (Python, en-GB)
+# Author: Jiří Mach
+# Institution: UCT Prague, Laboratory of Bioengineering
+# Licence: Apache 2.0
+# Date: 2025-09-18
+# Description:
+#   Provides a Python wrapper for the Arduino CLI toolchain. The function
+#   `upload_arduino()` compiles and uploads an Arduino sketch (*.ino) to a
+#   specified board (default: Arduino Uno) via a given serial port.
+#   Compilation and upload are executed as subprocesses with console
+#   output redirected to Python for easier debugging.
+# Dependencies:
+#   Python stdlib: subprocess
+#   External: arduino-cli (https://arduino.github.io/arduino-cli/)
+
 import subprocess
 
 def upload_arduino(arduino_file, port="COM5", fqbn="arduino:avr:uno", arduino_cli_dir=r".\Arduino_cli"):
