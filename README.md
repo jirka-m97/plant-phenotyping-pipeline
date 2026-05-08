@@ -1,8 +1,7 @@
 # Multifunctional Platform for Plant Phenotyping: Multispectral and Photogrammetric Pipelines
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](./LICENSE)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16902271.svg)](https://doi.org/10.5281/zenodo.20080759)
-
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20080759.svg)](https://doi.org/10.5281/zenodo.20080759)
 This repository contains software developed for a laboratory-scale prototype of a multifunctional robotic platform designed for non-destructive plant phenotyping at the Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague.
 
 The apparatus integrates a [robotic arm AR4](https://anninrobotics.com/), a custom-built motorised turntable, and a dedicated lighting system combining halogen and LED sources with two complementary imaging devices: a [multispectral camera FS 3200D 10GE](https://ftp.stemmer-imaging.com/webdavs/docmanager/150153-JAI-FS-3200D-10GE-Datasheet.pdf) and an [industrial RGB camera MER2-1220-32U3C](https://en.daheng-imaging.com/show-106-1997-1.html). Together, these components form a unified platform enabling flexible sensor positioning, reproducible imaging conditions, and the acquisition of both spectral and structural datasets. The software provides automated workflows for sensor control, data acquisition, organisation, and post-processing, ensuring synchronised operation of the robotic arm, cameras, and turntable.
