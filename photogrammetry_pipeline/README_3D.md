@@ -146,11 +146,11 @@ All key parameters are defined in a central configuration file `config.json`, al
 ## Applications
 
 - **Plant phenotyping**
-  - Generation of accurate 3D reconstructions for the quantitative assessment of growth, morphology, and structural variation.
-  - High-throughput acquisition of plant traits for studying the effects of biotic and abiotic stress factors.
+  - Generation of accurate 3D reconstructions for the quantitative assessment of growth, morphology, and structural
+   variation.
+  - Extraction of morphological metrics such as height, surface area, and volume for statistical evaluation across replicates.
+  - - High-throughput acquisition of plant traits for studying the effects of biotic and abiotic stress factors, as well as for biostimulant and biopesticide development.
   - Automated, reproducible image acquisition in laboratory environments with reduction of operator bias and manual workload.
-  - Extraction of measurements such as height, surface area, and volume for statistical evaluation across replicates.
-  - Creation of watertight 3D meshes suitable for computational simulations (e.g. airflow or light interception studies).
 
 - **Quality control and technical inspection**
   - Consistent 3D reconstruction of objects with known geometry to validate system calibration and reproducibility.
