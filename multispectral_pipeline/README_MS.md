@@ -60,7 +60,11 @@ This folder contains scripts for multispectral image acquisition, calibration, a
    - Produces reflectance-corrected RGB and NIR images.
 
 5. **NDVI computation**
-   - Computes NDVI as (NIR − Red) / (NIR + Red).
+   - Computes NDVI using the following formula:
+
+$$NDVI = \frac{NIR_{reflectance} - Red_{reflectance}}{NIR_{reflectance} + Red_{reflectance}}$$
+
+   where $NIR_{reflectance}$ and $Red_{reflectance}$ represent the surface reflectance values of the near-infrared and red bands respectively, derived after empirical line calibration rather than raw digital numbers.
    - Stores the NDVI map in the MATLAB workspace for subsequent processing.
 
 6. **Plant segmentation — manual** (`MS_pipeline_v8.m`)
