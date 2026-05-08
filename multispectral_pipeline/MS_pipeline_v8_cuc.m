@@ -1,5 +1,5 @@
 % =========================================================================
-% Multispectral NDVI Pipeline (script version, en-GB)
+% Multispectral NDVI Pipeline — automated segmentation (script version, en-GB)
 % Authors: 
 %   - Jiří Mach
 %   - Lukáš Krauz
@@ -12,8 +12,8 @@
 %   Implements a multispectral image processing workflow for plant NDVI 
 %   calculation. Includes radiometric calibration of RGB and NIR data, 
 %   reflectance correction using a calibration chart, NDVI computation, 
-%   and plant tissue segmentation (manual or CNN-based). Outputs include 
-%   calibrated imagery, NDVI maps, and statistical metrics.
+%   and automated plant tissue segmentation using a pre-trained CNN model.
+%   Outputs include calibrated imagery, NDVI maps, and statistical metrics.
 % =========================================================================
 %%
 
@@ -26,17 +26,17 @@ height             = 1536;
 bitDepth           = 'uint8';
 
 % Single frames
-pathRGB            = ".\_testing\Img_1_RGB.bin";
-pathNIR            = ".\_testing\Img_1_NIR.bin";
+pathRGB            = "./_testing/Img_1_RGB.bin";
+pathNIR            = "./_testing/Img_1_NIR.bin";
 
 % Calibration folders (masters are averaged from *.bin filtered by keyword)
-folder_biasRGB     = ".\_testing\Bias";
-folder_darkRGB     = ".\_testing\Dark";
-folder_flatRGB     = ".\_testing\Flat";
+folder_biasRGB     = "./_testing/Bias";
+folder_darkRGB     = "./_testing/Dark";
+folder_flatRGB     = "./_testing/Flat";
 
-folder_biasNIR     = folder_biasRGB;
-folder_darkNIR     = folder_darkRGB;
-folder_flatNIR     = folder_flatRGB;
+folder_biasNIR     = folder_biasRGB;   % RGB and NIR calibration frames stored in the same folder
+folder_darkNIR     = folder_darkRGB;   % separated by keyword filtering (RGB/NIR)
+folder_flatNIR     = folder_flatRGB;   % change if stored separately
 
 % Test chart ROIs [x y w h]; order must match the reflectance arrays
 roi_wbRGB          = [1480, 330, 200, 100]; % reference chip for RGB white balance
@@ -62,11 +62,11 @@ reflectanceNIR     = [7.29, 11.29, 30.72, 64.51, 95.42];
 showOverlays       = true;   % draw rectangles and labels
 annotateMeans      = true;   % print mean values next to chips
 saveOutputs        = false;  % save NDVI/mask/calibration logs
-% outputFolder       = "Masked_images";
+outputFolder       = "Masked_images";
 
 % Segmentation (pre-trained network with 'plant' class)
 segModelPath       = "cucSegNDVI_v7.mat";
-segVarName         = "net_resnet50_finetune_wider";
+segVarName         = "cucSegNDVI_v7";
 
 % Post-processing & stats
 minRegionSize      = 500;    % remove small speckles
@@ -133,7 +133,7 @@ if showOverlays
     plot(rgbChipMeans(:,1), reflectanceRGB, 'r*');
     plot(rgbChipMeans(:,2), reflectanceRGB, 'g*');
     plot(rgbChipMeans(:,3), reflectanceRGB, 'b*');
-    xlabel('Image values (–)'); ylabel('Reflectance (%)');
+    xlabel('Image values (-)'); ylabel('Reflectance (%)');
     axis([0 1 0 100]); legend('R','G','B','Location','best');
     title('Calibration curve — RGB reflectance');
     hold off;
@@ -157,7 +157,7 @@ if showOverlays
         "NIR chip %d", nirChipMeans, annotateMeans, []);
     figure; grid on;
     plot(nirChipMeans, reflectanceNIR, 'k*');
-    xlabel('Image values (–)'); ylabel('Reflectance (%)');
+    xlabel('Image values (-)'); ylabel('Reflectance (%)');
     axis([0 1 0 100]); title('Calibration curve — NIR reflectance');
 end
 
@@ -192,7 +192,7 @@ validVals   = NDVI_masked(validMask);
 if ~isempty(validVals)
     avgNDVI = mean(validVals);
     sdNDVI  = std(validVals);
-    fprintf('Mean NDVI (leaf area): %.3f ± %.3f\n', avgNDVI, sdNDVI);
+    fprintf('Mean NDVI (leaf area): %.3f +/- %.3f\n', avgNDVI, sdNDVI);
 else
     warning('No valid pixels for NDVI computation.');
 end
@@ -248,7 +248,7 @@ function img = read_single_bin_image(path, w, h, bitDepth)
 end
 
 function out = clamp_image(in, a, b)
-% Clamp values to the closed interval <a, b>.
+% Clamp values to the closed interval [a, b].
     out = in;
     out(out < a) = a;
     out(out > b) = b;
