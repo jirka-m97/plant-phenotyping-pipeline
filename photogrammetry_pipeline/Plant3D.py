@@ -11,8 +11,17 @@
 #   depth-map generation, mesh reconstruction, optional model switch,
 #   chunk duplication, cylindrical crop, smoothing, component removal,
 #   hole closing, and morphometric reporting (height/surface/volume).
-#   Saves the project incrementally and posts a completion notification
-#   via a webhook (requests).
+#   Saves each dataset as an individual project file and appends metrics
+#   to a shared log. Already processed folders are skipped automatically.
+#   Posts a completion notification via a webhook (requests).
+#
+# IMPORTANT — user adjustments required before first use:
+#   1. Bounding box (set_chunk_region): adjust geo_size and geo_center
+#      to match the physical dimensions and position of your setup.
+#   2. Cylinder parameters (cut_cuvette): set CENTER_X, CENTER_Y, RADIUS,
+#      Z_MIN, Z_MAX, and Z_LIM in config.json to match the geometry of
+#      your plant pot (cultivation vessel). Incorrect values will result in incomplete or
+#      erroneous model cropping.
 # Dependencies:
 #   Python stdlib: os, time, json, math, traceback
 #   Third-party: Metashape, requests, tkinter
@@ -57,7 +66,7 @@ main_folder = config["SOURCE_FOLDER_PATH"]
 output_base_path = config["RESULTS_FOLDER_PATH"]
 project_name = config["PROJECT_NAME"]
 output_project_path = os.path.join(output_base_path, f"{project_name}.psx")
-metrics_path = os.path.join(output_base_path, f"{project_name}_cut_metrics.txt")  # single text file with CUT metrics
+metrics_path = os.path.join(output_base_path, f"{project_name}_cut_metrics.txt")
 
 # Optional post-processing parameters (with sane defaults)
 SMOOTHING = int(config.get("SMOOTHING", 1))
@@ -86,6 +95,24 @@ doc = Metashape.Document()
 def log(*args):   print("[INFO]", *args)
 def debug(*args): print("[DEBUG]", *args)
 def error(*args): print("[ERROR]", *args)
+
+# -------------
+# Skip already processed folders
+# -------------
+def get_processed_folders(metrics_file):
+    """
+    Reads the metrics file and returns a set of already processed folder names.
+    Allows the pipeline to resume safely after interruption.
+    """
+    processed = set()
+    if os.path.isfile(metrics_file):
+        with open(metrics_file, "r", encoding="utf-8") as f:
+            for line in f:
+                parts = line.split('\t')
+                if len(parts) > 0:
+                    name = parts[0].replace("-cut", "").strip()
+                    processed.add(name)
+    return processed
 
 # --------------------------------
 # Import sensor calibration (XML)
@@ -126,7 +153,7 @@ def import_calibration(chunk, config):
 # ------------------------------------
 def read_reference_coordinates(file_path):
     """
-    Reads reference coordinates (tab separated file: ID \t X \t Y \t Z).
+    Reads reference coordinates (tab-separated file: ID \t X \t Y \t Z).
     Returns: dict {marker_label: Metashape.Vector([x, y, z])}
     """
     reference_coords = {}
@@ -159,7 +186,7 @@ def assign_marker_coordinates(chunk, reference_coords):
 
 def coordinate_assignment_complete(chunk, path):
     """
-    Sets CRS to local (meters), imports reference coordinates and updates chunk transform.
+    Sets CRS to local (metres), imports reference coordinates and updates chunk transform.
     """
     chunk_name = chunk.label
     print(f"Processing chunk: {chunk_name}")
@@ -175,6 +202,12 @@ def coordinate_assignment_complete(chunk, path):
 def set_chunk_region(chunk):
     """
     Sets a generic region (BBox) based on current transform and CRS.
+
+    IMPORTANT: geo_size and geo_center are hardcoded for the current setup.
+    Adjust these values to match the physical dimensions and position of
+    your turntable and imaging volume before use.
+      - geo_size [X, Y, Z]: bounding box dimensions in millimetres.
+      - geo_center [X, Y, Z]: centre of the bounding box in CRS coordinates.
     """
     T = chunk.transform.matrix
     v_t = T.mulp(Metashape.Vector([0, 0, 0]))
@@ -200,7 +233,7 @@ def set_chunk_region(chunk):
 # -------------------------------------------------------
 def ensure_adjusted_model_active(chunk, config):
     """
-    If a model labeled as config['ADJUSTED_MODEL_NAME'] exists, set it active.
+    If a model labelled as config['ADJUSTED_MODEL_NAME'] exists, set it active.
     Logs available models and the current one.
     """
     try:
@@ -263,8 +296,13 @@ def duplicate_chunk_for_cut(doc, chunk, suffix_orig="-orig", suffix_cut="-cut"):
 def cut_cuvette(chunk):
     """
     Duplicates the active model as 'cut' (label overridable via CUT_MODEL_NAME) and
-    removes faces outside cylinder [CENTER_X, CENTER_Y, RADIUS] in Z range [Z_MIN, Z_MAX],
-    and anything below Z_LIM. All in chunk CRS.
+    removes faces inside the cylinder [CENTER_X, CENTER_Y, RADIUS] in Z range
+    [Z_MIN, Z_MAX], and anything below Z_LIM. All coordinates in chunk CRS.
+
+    IMPORTANT: all cylinder parameters must be set in config.json before use.
+    Adjust CENTER_X, CENTER_Y, RADIUS, Z_MIN, Z_MAX, and Z_LIM to match the
+    physical geometry of your plant pot (cultivation vessel). Incorrect values
+    will result in incomplete or erroneous model cropping.
     """
     try:
         if not chunk.model:
@@ -301,6 +339,7 @@ def cut_cuvette(chunk):
                     inside_cyl = False
                 if z < z_lim:
                     below_lim = True
+            # remove faces INSIDE the cylinder (cuvette) or BELOW Z_LIM
             if inside_cyl and (not below_lim):
                 face.selected = True; count_sel += 1
             else:
@@ -337,7 +376,7 @@ def calculate_height_crs(chunk, model=None):
 
 def compute_area_volume(model):
     """
-    Returns (area, volume). volume is absolute value to ignore normal orientation.
+    Returns (area, volume). Volume is absolute value to ignore normal orientation.
     """
     if not model:
         return (None, None)
@@ -356,7 +395,14 @@ def compute_area_volume(model):
 # Notification
 # ---------------
 def notification(project_name, dur_s, dur_m, dur_h):
-    WEBHOOK_URL = "https://discord.com/api/webhooks/..."
+    """
+    Sends a completion notification via Discord webhook.
+    Set WEBHOOK_URL to your webhook address before use.
+    """
+    WEBHOOK_URL = ""  # insert your Discord webhook URL here
+    if not WEBHOOK_URL:
+        print("Webhook URL not set – skipping notification.")
+        return
     data = {"content": f'Project "{project_name}" finished successfully! Duration: {dur_s} s ({dur_m} m, {dur_h} h).'}
     try:
         response = requests.post(WEBHOOK_URL, json=data, timeout=10)
@@ -377,11 +423,21 @@ if not os.path.isfile(metrics_path):
     with open(metrics_path, "w", encoding="utf-8") as f:
         f.write("chunk\tH[m]\tS[m2]\tV[m3]\n")
 
+# Skip already processed folders to allow safe resumption after interruption
+done_folders = get_processed_folders(metrics_path)
+log(f"Skipping {len(done_folders)} already processed folder(s).")
+
 for folder_name in os.listdir(main_folder):
-    s_indiv = time.time()
+    if folder_name in done_folders:
+        log(f"Skipping (already processed): {folder_name}")
+        continue
+
     folder_path = os.path.join(main_folder, folder_name)
     if not os.path.isdir(folder_path):
         continue
+
+    log(f"Processing: {folder_name}")
+    s_indiv = time.time()
 
     chunk = doc.addChunk()
     chunk.label = folder_name
@@ -389,8 +445,12 @@ for folder_name in os.listdir(main_folder):
     # Add photos
     image_files = [os.path.join(folder_path, f) for f in os.listdir(folder_path)
                    if f.lower().endswith(('.jpg', '.jpeg', '.png', '.tif', '.tiff'))]
-    if image_files:
-        chunk.addPhotos(image_files)
+    if not image_files:
+        log(f"No images found in {folder_name} – skipping.")
+        doc.clear()
+        continue
+
+    chunk.addPhotos(image_files)
 
     # Calibration before alignment
     import_calibration(chunk, config)
@@ -421,9 +481,9 @@ for folder_name in os.listdir(main_folder):
     task.source_data = Metashape.DepthMapsData
     task.vertex_confidence = True
     task.keep_depth = True
-    task.apply(chunk)  # -> original model lives here
+    task.apply(chunk)
 
-    # Optionally switch active model by name (if you use a named intrinsics-adjusted model)
+    # Optionally switch active model by name
     ensure_adjusted_model_active(chunk, config)
 
     # Duplicate chunk and crop only in the copy
@@ -438,7 +498,7 @@ for folder_name in os.listdir(main_folder):
             cut_chunk.model.removeComponents(COMPONENT_SIZE)
             cut_chunk.model.closeHoles(HOLES_SIZE)
 
-            # --- CUT metrics: height, surface, volume (append to one TXT) ---
+            # Metrics: height, surface, volume
             height = calculate_height_crs(cut_chunk, cut_chunk.model)
             area, volume = compute_area_volume(cut_chunk.model)
 
@@ -448,13 +508,14 @@ for folder_name in os.listdir(main_folder):
             with open(metrics_path, "a", encoding="utf-8") as f:
                 f.write(f"{cut_chunk.label}\t{_fmt(height)}\t{_fmt(area)}\t{_fmt(volume)}\n")
 
-            log(f"Metrics (H,S,V) written: {metrics_path}  (chunk '{cut_chunk.label}')")
+            log(f"Metrics (H, S, V) written: {metrics_path}  (chunk '{cut_chunk.label}')")
     else:
         log("Cut chunk copy was not created; keeping original only for this iteration.")
 
-    # Save project (incremental)
-    doc.save(output_project_path)
-    print(f"Project saved: {output_project_path}")
+    # Save individual project file as a safety backup
+    individual_project = os.path.join(output_base_path, f"{folder_name}.psx")
+    doc.save(individual_project)
+    log(f"Individual project saved: {individual_project}")
 
     # Time log per folder
     e_indiv = time.time()
@@ -462,13 +523,11 @@ for folder_name in os.listdir(main_folder):
     with open(os.path.join(output_base_path, f"{project_name}_times.txt"), "a", encoding="utf-8") as file:
         file.write(f"{folder_name}: {duration_indiv/3600:.4f} h, {duration_indiv/60:.4f} min, {duration_indiv:.3f} s.\n")
 
-# Final save & notification
-Metashape.app.update()
-doc.save(output_project_path)
+    # Clear document memory before next iteration
+    doc.clear()
+    log(f"Memory cleared after: {folder_name}")
 
+# Final notification
 e = time.time()
 duration = e - s
-notification(project_name, round(duration,3), round(duration/60,4), round(duration/3600,4))
-
-
-
+notification(project_name, round(duration, 3), round(duration/60, 4), round(duration/3600, 4))
