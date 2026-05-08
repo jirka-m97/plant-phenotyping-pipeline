@@ -7,16 +7,16 @@
 // Date: 2025-09-18
 // Description:
 //   Arduino sketch for continuous rotation of a stepper-driven turntable
-//   using an A4988 driver. The EN, DIR, and STEP pins are configured to
+//   using an TMC2130 driver. The EN, DIR, and STEP pins are configured to
 //   generate pulses with a fixed delay time, driving the table to rotate
 //   endlessly in one direction.
 // =========================================================================
 
-#define EN    8  // enable pin (A4988)
+#define EN    8  // enable pin (TMC2130)
 #define X_DIR 5  // direction pin
 #define X_STP 2  // step pin
 
-// A4988 stepper driver — pulse delay in microseconds
+// TMC2130 stepper driver — pulse delay in microseconds
 int delayTime  = 1810;
 int one_step   = 13100;  // full rotation step count
 
