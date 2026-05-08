@@ -76,7 +76,7 @@ Installable with `pip`:
 ### Metashape calibration XML file
 - `calib_calibrationField.xml` → XML file containing intrinsic camera calibration parameters, used for improved alignment accuracy in Plant3D.py
 
-Pretrained poses of AR4 robotic arm
+### Pretrained poses of AR4 robotic arm
 - `P_QR`, `P_redset_120`, `P_fullset_360`, `P_end` → pre-recorded robot pose sequences stored in binary format (pickle), defining the joint positions of the robotic arm for QR capture, image acquisition, and final positioning. The poses were taught using the AR4 graphical user interface provided by the manufacturer (Annin Robotics).
 ---
 
