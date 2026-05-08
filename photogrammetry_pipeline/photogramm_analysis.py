@@ -15,8 +15,17 @@
 #   Python stdlib: os, re, sys, time, pickle, shutil, subprocess
 #   Third-party: OpenCV (cv2), numpy, pyzbar, pyserial, gxipy, Pillow (PIL)
 #   Local modules: arduino_upload.py, single_capture.py
+#
+# Note on QR workflow:
+#   By default, the script reads a QR code to create a time-stamped subfolder
+#   inside BASE_FOLDER and saves images there. If QR acquisition is not
+#   required (e.g. when imaging a different plant species without repositioning
+#   the QR code or camera), steps 3 and 4 can be skipped by setting:
+#
+#       USE_QR = False
+#
+#   In that case, images are saved directly into BASE_FOLDER.
 # =========================================================================
-
 
 import os
 import re
@@ -37,32 +46,40 @@ from single_capture import capture_single_image
 ### === Path and parameters setup ===
 
 ## QR code
-ROB_POS = r".\P_QR"
-ARDUINO_ZERO = r".\turntable_zero.ino" 
-ARDUINO_PORT = "COM5" # Adjust COM port if needed
-fqbn = "arduino:avr:uno"
-BASE_FOLDER = r".\Fotogram_source_data"
-QR_IMAGE_NAME = "QR_code.jpg"
-QR_EXPOSURE = 180_000
+ROB_POS  = "./P_QR"
+ARDUINO_ZERO = "./turntable_zero_position.ino"
+ARDUINO_PORT = "COM5"  # adjust COM port if needed
+fqbn         = "arduino:avr:uno"
+BASE_FOLDER  = "./Fotogram_source_data"
+QR_EXPOSURE  = 180_000
 
-## Continuous rotation - turntable
-ARDUINO_CON = r".\turntable_continuous.ino"
+# Set to False to skip QR capture and save images directly into BASE_FOLDER
+USE_QR = True
 
-## Images capture
+## Continuous rotation — turntable
+ARDUINO_CON = "./turntable_continuous_rotation.ino"
+
+## Image capture
 IMG_EXPOSURE = 50_000
-SERIAL_PORT = "COM4"
-#IMG_AMOUNT = 60 # For full set 360 images
-IMG_AMOUNT = 40 # For reduced set 120 images
-#ACQ_PAUSE = 0.25 # For full set 360 images
-ACQ_PAUSE = 0.475 # For reduced set 120 images
-#P_POSES_ONLY = r".\P_fullset_360" # For full set 360 images
-P_POSES_ONLY = r".\P_redset_120" # For reduced set 120 images
+SERIAL_PORT  = "COM4"
+
+# Full set (360 images): uncomment the lines below and comment out the reduced set
+# IMG_AMOUNT = 60
+# ACQ_PAUSE  = 0.25
+# P_POSES_ONLY = "./P_fullset_360"
+
+# Reduced set (120 images)
+IMG_AMOUNT   = 40
+ACQ_PAUSE    = 0.475
+P_POSES_ONLY = "./P_redset_120"
+
 CAMERA_SCRIPT_SELFCONTAINED = False
 
-## Last pose - END
-P_END = r".\P_end"
+## Last pose — END
+P_END = "./P_end"
 
-TEMP_QR_FOLDER = r".\temp_qr"
+TEMP_QR_FOLDER = "./temp_qr"
+
 
 # === QR code: processing ===
 def decode_qr(image_path):
@@ -150,6 +167,10 @@ def run_camera_qr(output_folder):
 
 # === Camera + multiple images ===
 def capture_multiple_images(folder, count, exposure_time):
+    """
+    Alternative image capture function using direct gxipy DeviceManager.
+    Not used in the main workflow — retained for standalone or diagnostic use.
+    """
     from gxipy import DeviceManager
 
     dm = DeviceManager()
@@ -182,7 +203,7 @@ def capture_multiple_images(folder, count, exposure_time):
         Image.fromarray(img_array).save(filename)
         print(f"[OK] Image saved to: {filename}")
 
-        # time.sleep(ACQ_PAUSE)  # pause between images
+        time.sleep(ACQ_PAUSE)
 
     cam.stream_off()
     cam.close_device()
@@ -200,6 +221,7 @@ def get_next_image_index(folder):
 def load_program(file_path):
     with open(file_path, "rb") as f:
         return pickle.load(f)
+
 
 # === Main execution ===
 if __name__ == "__main__":
@@ -226,22 +248,28 @@ if __name__ == "__main__":
             print(f"[ERROR] Robot positioning failed: {e}")
             sys.exit(1)
 
-        # 3) Capture QR image into temp folder
-        os.makedirs(TEMP_QR_FOLDER, exist_ok=True)
-        print("[INFO] Waiting 2 seconds before capturing QR image...")
-        time.sleep(1)
+        if USE_QR:
+            # 3) Capture QR image into temp folder
+            os.makedirs(TEMP_QR_FOLDER, exist_ok=True)
+            print("[INFO] Waiting 1 second before capturing QR image...")
+            time.sleep(1)
 
-        success = run_camera_qr(TEMP_QR_FOLDER)
-        if not success:
-            print("[ERROR] Failed to capture the QR code image. Exiting.")
-            sys.exit(1)
+            success = run_camera_qr(TEMP_QR_FOLDER)
+            if not success:
+                print("[ERROR] Failed to capture the QR code image. Exiting.")
+                sys.exit(1)
 
-        # 4) Process QR image and create main folder
-        qr_image_path = os.path.join(TEMP_QR_FOLDER, "Img_001.jpg")
-        folder = process_qr_image(qr_image_path)
-        if not folder:
-            print("[ERROR] Failed to create folder from QR. Exiting.")
-            sys.exit(1)
+            # 4) Process QR image and create main folder
+            qr_image_path = os.path.join(TEMP_QR_FOLDER, "Img_001.jpg")
+            folder = process_qr_image(qr_image_path)
+            if not folder:
+                print("[ERROR] Failed to create folder from QR. Exiting.")
+                sys.exit(1)
+        else:
+            # QR workflow skipped — saving images directly into BASE_FOLDER
+            print("[INFO] USE_QR=False: skipping QR capture, using BASE_FOLDER directly.")
+            os.makedirs(BASE_FOLDER, exist_ok=True)
+            folder = BASE_FOLDER
 
     else:
         print("[ERROR] Arduino code upload failed.")
