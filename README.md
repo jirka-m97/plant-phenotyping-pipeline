@@ -53,7 +53,7 @@ plant-phenotyping-pipeline/
 
 ### Photogrammetric pipeline
 - Python 3.8 or later
-- Agisoft Metashape Professional (licence required) with [Python API](https://www.agisoft.com/downloads/installer/)
+- [Agisoft Metashape Professional] (https://www.agisoft.com/downloads/installer/) 
 - [Daheng Galaxy SDK](https://en.daheng-imaging.com/list-57-1.html) (for RGB camera control)
 
 ---
