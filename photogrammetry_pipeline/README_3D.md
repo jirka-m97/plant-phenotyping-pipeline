@@ -67,7 +67,6 @@ Installable with `pip`:
 
 ### Local modules
 - `arduino_upload.py` → provides the function `upload_arduino` for flashing Arduino sketches
-- `single_capture.py` → provides the function `capture_single_image` for camera operation and frame saving
 
 ### Arduino scripts
 - `turntable_continuous_rotation.ino` → Arduino sketch for continuous rotation of the turntable
