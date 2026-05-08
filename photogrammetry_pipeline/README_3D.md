@@ -145,24 +145,6 @@ All key parameters are defined in a central configuration file `config.json`, al
 
 ## Applications
 
-The integrated acquisition and processing workflow is broadly applicable to experimental and applied scenarios where both **automation** and **metric accuracy** are essential. Typical use cases include:
-
-- **Plant phenotyping**
-  - Generation of accurate 3D reconstructions for the quantitative assessment of growth, morphology, and structural variation.
-  - High-throughput acquisition of plant traits for studying the effects of biotic and abiotic stress factors.
-
-- **Controlled imaging experiments**
-  - Automated, reproducible image acquisition in laboratory environments.
-  - Reduction of operator bias and manual workload through fully automated dataset collection and processing.
-
-- **Quantitative morphometric analysis**
-  - Extraction of measurements such as height, surface area, and volume for statistical evaluation across replicates.
-  - Creation of watertight 3D meshes suitable for computational simulations (e.g. airflow or light interception studies).
-
-- **Quality control and technical inspection**
-  - Consistent 3D reconstruction of objects with known geometry to validate system calibration and reproducibility.
-  - Adaptability to non-biological specimens, enabling applications in engineering, materials testing, and industrial inspection.
-
-- **Educational and research infrastructure**
-  - Demonstration of end-to-end photogrammetry workflows in academic teaching.
-  - Establishment of reproducible pipelines in multi-user laboratories where standardisation is essential.
+- **Plant phenotyping** – generation of accurate 3D reconstructions for the quantitative assessment of growth, morphology, and structural variation; high-throughput acquisition of plant traits for studying the effects of biotic and abiotic stress factors; automated, reproducible image acquisition in laboratory environments with reduction of operator bias and manual workload; extraction of measurements such as height, surface area, and volume for statistical evaluation across replicates; creation of watertight 3D meshes suitable for computational simulations (e.g. airflow or light interception studies).
+- **Quality control and technical inspection** – consistent 3D reconstruction of objects with known geometry to validate system calibration and reproducibility; adaptability to non-biological specimens, enabling applications in engineering, materials testing, and industrial inspection.
+- **Educational and research infrastructure** – demonstration of end-to-end photogrammetry workflows in academic teaching; establishment of reproducible pipelines in multi-user laboratories where standardisation is essential.
