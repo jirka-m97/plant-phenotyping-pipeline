@@ -94,7 +94,7 @@ $$NDVI = \frac{NIR_{reflectance} - Red_{reflectance}}{NIR_{reflectance} + Red_{r
 ### Pre-trained segmentation model
 The automated segmentation pipeline requires the pre-trained DeepLab v3+ model with a ResNet-50 backbone, fine-tuned for *Cucumis sativus* plant segmentation:
 
-- Available on Zenodo: [https://doi.org/10.5281/zenodo.16902271](https://doi.org/10.5281/zenodo.16902271)
+- Available on Zenodo: [https://zenodo.org/records/20080759)](https://zenodo.org/records/20080759)
 - After download, place `cucSegNDVI_v7.mat` into `/multispectral_pipeline/`
 - Default path defined in the script:
   ```matlab
