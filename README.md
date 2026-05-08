@@ -1,7 +1,7 @@
 # Multifunctional Platform for Plant Phenotyping: Multispectral and Photogrammetric Pipelines
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](./LICENSE)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16902271.svg)](https://doi.org/10.5281/zenodo.16902271)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16902271.svg)](https://doi.org/10.5281/zenodo.20080759)
 
 This repository contains software developed for a laboratory-scale prototype of a multifunctional robotic platform designed for non-destructive plant phenotyping at the Laboratory of Bioengineering, Institute of Biotechnology, University of Chemistry and Technology Prague.
 
