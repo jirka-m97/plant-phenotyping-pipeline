@@ -1,6 +1,15 @@
 # Photogrammetric analysis pipeline
 
-This repository contains the Python script `photogrammetry_analysis.py`, which automates a complete photogrammetric acquisition workflow by integrating robotic positioning, camera control, automated image capture, and QR-based sample identification. The system was designed for controlled imaging of plants with the purpose of generating structured datasets suitable for three-dimensional reconstruction and advanced phenotyping studies.
+This repository contains software for a complete photogrammetric workflow divided into two phases:
+
+- **Phase 1 — Hardware control and data acquisition** (`photogrammetry_analysis.py`) — automates robotic positioning, camera control, image capture, and QR-based sample identification.
+- **Phase 2 — Image data processing and 3D model generation** (`Photogram3D.py`, `Plant3D.py`) — handles dataset monitoring, photogrammetric reconstruction, model cropping, post-processing, and morphometric analysis using the Agisoft Metashape Python API.
+
+The system was designed for controlled imaging of plants with the purpose of generating structured datasets suitable for three-dimensional reconstruction and advanced phenotyping studies.
+
+---
+
+## Hardware Control and Data Acquisition
 
 ---
 
@@ -93,7 +102,9 @@ Two local modules, two external Arduino sketches, and two supporting data files 
 
 ---
 
-## Image Data Post-Processing Pipeline
+## 3D Reconstruction and Data Processing Pipeline
+
+---
 
 This workflow provides a **fully automated and robust pipeline for photogrammetric data processing**, designed to minimise manual intervention while ensuring reproducibility and accuracy when handling large image datasets.
 
@@ -146,11 +157,9 @@ All key parameters are defined in a central configuration file `config.json`, al
 ## Applications
 
 - **Plant phenotyping**
-  - Generation of accurate 3D reconstructions for the quantitative assessment of growth, morphology, and structural
-   variation.
-  - Extraction of morphological metrics such as height, surface area, and volume for statistical evaluation across replicates.
-  - High-throughput acquisition of plant traits for studying the effects of biotic and abiotic stress factors, as well as for biostimulant and biopesticide development.
+  - Generation of accurate 3D reconstructions for the quantitative assessment of growth, morphology, and structural variation.
   - Automated, reproducible image acquisition in laboratory environments with reduction of operator bias and manual workload.
+  - High-throughput acquisition of plant traits for studying the effects of biotic and abiotic stress factors, as well as for biostimulant and biopesticide development.
 
 - **Quality control and technical inspection**
   - Consistent 3D reconstruction of objects with known geometry to validate system calibration and reproducibility.
