@@ -1,3 +1,25 @@
+# =========================================================================
+# Turntable Marker Coordinates (en-GB)
+# Authors:
+#   - Jiří Mach, UCT Prague, Faculty of Food and Biochemical Technology,
+#     Laboratory of Bioengineering
+#   - Zdeněk Svatý, Czech Technical University in Prague,
+#     Faculty of Transportation Sciences, Institute of Forensic Engineering
+#     in Transportation
+# Licence: Apache 2.0
+# Date: 2025-09-18
+# Description:
+#   3D coordinates of 16 circular 12-bit coded reference markers arranged
+#   on a custom-made fabric mat fixed to the lid of the motorised turntable.
+#   These reference points are used for camera alignment and workspace
+#   scaling during photogrammetric reconstruction in Agisoft Metashape.
+#   Coordinates are given in millimetres relative to the turntable centre
+#   (X, Y, Z), with Z = 0 for all markers (planar arrangement on the
+#   turntable lid surface).
+#
+# Format: target_label  X[mm]  Y[mm]  Z[mm]
+# =========================================================================
+
 target 45	-80.5861	-16.227	0
 target 37	-80.4534	16.0334	0
 target 60	-68.4231	-45.9689	0
