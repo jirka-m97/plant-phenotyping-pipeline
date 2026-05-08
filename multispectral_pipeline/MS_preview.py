@@ -13,7 +13,6 @@
 # =========================================================================
 
 import os
-import cv2
 import numpy as np
 import eBUS as eb
 import PvSampleUtils as psu
@@ -25,13 +24,13 @@ opencv_is_available = True
 try:
     import cv2
     opencv_version = cv2.__version__
-except:
+except ImportError:
     opencv_is_available = False
     print("Warning: OpenCV is required to display preview window.")
 
 def auto_select_first_device():
     finder = eb.PvSystem()
-    finder.Find()  # Aktualizuje seznam zařízení
+    finder.Find()  # updates the list of available devices
     count = finder.GetInterfaceCount()
     for i in range(count):
         interface = finder.GetInterface(i)
@@ -118,7 +117,7 @@ def acquire_preview(device, stream):
                 img_rgb = cv2.cvtColor(img_data, cv2.COLOR_BayerRG2RGB)
 
                 cv2.namedWindow("RGB Preview", cv2.WINDOW_NORMAL)
-                cv2.resizeWindow("RGB Preview", 1280, 960)  # nebo podle potřeby
+                cv2.resizeWindow("RGB Preview", 1280, 960)  # adjust as needed
                 cv2.imshow("RGB Preview", img_rgb)
                 cv2.waitKey(1)
 
