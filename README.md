@@ -49,12 +49,12 @@ plant-phenotyping-pipeline/
 - Deep Learning Toolbox
 - Computer Vision Toolbox
 - Deep Learning Toolbox Model for ResNet-50 Network (Add-On)
-- JAI SDK (for multispectral camera control)
+- [JAI SDK](https://www.jai.com/support-software) (for multispectral camera control)
 
 ### Photogrammetric pipeline
 - Python 3.8 or later
-- Agisoft Metashape Professional (licence required) with Python API
-- Daheng Galaxy SDK (for RGB camera control)
+- Agisoft Metashape Professional (licence required) with [Python API](https://www.agisoft.com/downloads/installer/)
+- [Daheng Galaxy SDK](https://en.daheng-imaging.com/list-57-1.html) (for RGB camera control)
 
 ---
 
