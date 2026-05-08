@@ -1,18 +1,31 @@
-{"__header": "Configuration file for 3D Reconstruction Workflow\nAuthors: Jiří Mach (UCT Prague, FPBT, Laboratory of Bioengineering)\nLicence: Apache 2.0\nDate: 2025-09-18\nDescription: Defines user-adjustable parameters for the automated photogrammetry pipeline.",
- "_1st_section": "===User inputs===",
+{
+  "__header_title": "Configuration file for 3D Reconstruction Workflow",
+  "__header_author": "Jiří Mach (UCT Prague, Faculty of Food and Biochemical Technology, Laboratory of Bioengineering)",
+  "__header_licence": "Apache 2.0",
+  "__header_date": "2025-09-18",
+  "__header_description": "Defines user-adjustable parameters for the automated photogrammetry pipeline."
+ 
+  "_1st_section": "=== User inputs ===",
   "FOLDER_AMOUNT": 2,
   "IMAGE_AMOUNT": 361,
+  "PROJECT_NAME": "YYMMDD_speciesCode_plantID",
+
+  "_2nd_section": "=== Paths to source data and results ===",
+  "SOURCE_FOLDER_PATH": "./source_folder",
+  "RESULTS_FOLDER_PATH": "./results_folder",
+
+  "_3rd_section": "=== Paths to coordinates (control points) ===",
+  "CONTROL_POINTS_COORDINATES": "./coordinates.txt",
+
+  "_4th_section": "=== Camera calibration parameters ===",
+  "CALIBRATION_FILE": "./calib_calibrationField.xml",
+
+  "_5th_section": "=== Build model parameters ===",
   "TWEAK_1": null,
   "TWEAK_2": null,
-  "PROJECT_NAME": "YYMMDD_test",
-  "_2nd_section": "===Paths to source data and results===",
-  "SOURCE_FOLDER_PATH": "./source_folder", 
-  "RESULTS_FOLDER_PATH": "./results_folder",
-  "_3rd_section": "===Paths to cordinates (control points)===",
-  "CONTROL_POINTS_COORDINATES": "./coordinates.txt",
-  "_4th_section": "===Camera calibration parameters===",
-  "CALIBRATION_FILE": "./calib_calibrationField.xml",
-  "5th_section": "===Model cutting (cilinder definition)===",
+  "_tweak_note": "TWEAK_1 and TWEAK_2 are advanced Metashape parameters for 3D mesh hole filling during the build model phase, analogous to dilation and erosion in 2D morphological operations. Set to null to use default values.",
+
+  "_6th_section": "=== Model cutting (cylinder definition) ===",
   "ADJUSTED_MODEL_NAME": "adjusted",
   "CENTER_X": 0,
   "CENTER_Y": 0,
@@ -20,11 +33,9 @@
   "Z_MIN": 0,
   "Z_MAX": 105,
   "Z_LIM": 20,
-  "6th_section": "===Model post-processing===",
+
+  "_7th_section": "=== Model post-processing ===",
   "SMOOTHING": 1,
   "COMPONENT_SIZE": 100000,
   "HOLES_SIZE": 100
 }
-
-
-
