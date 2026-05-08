@@ -149,7 +149,7 @@ All key parameters are defined in a central configuration file `config.json`, al
   - Generation of accurate 3D reconstructions for the quantitative assessment of growth, morphology, and structural
    variation.
   - Extraction of morphological metrics such as height, surface area, and volume for statistical evaluation across replicates.
-  - - High-throughput acquisition of plant traits for studying the effects of biotic and abiotic stress factors, as well as for biostimulant and biopesticide development.
+  - High-throughput acquisition of plant traits for studying the effects of biotic and abiotic stress factors, as well as for biostimulant and biopesticide development.
   - Automated, reproducible image acquisition in laboratory environments with reduction of operator bias and manual workload.
 
 - **Quality control and technical inspection**
