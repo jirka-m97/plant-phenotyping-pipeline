@@ -109,9 +109,9 @@ We also acknowledge the technical support provided by:
 
 ## Related publications
 
-Mach, J., *et al*. Development of low-cost multifunctional robotic apparatus for high-throughput plant phenotyping. *Smart Agricultural Technology*, 2024, 9, 17. [https://doi.org/10.1016/j.atech.2024.100654](https://doi.org/10.1016/j.atech.2024.100654)
+Mach J., Krauz L., Páta P., Halecky M. (2024) Development of low-cost multifunctional robotic apparatus for high-throughput plant phenotyping. *Smart Agricultural Technology*, 9, 1-17, [https://doi.org/10.1016/j.atech.2024.100654](https://doi.org/10.1016/j.atech.2024.100654)
 
-Mach, J., *et al*. Implementation of an SfM-MVS-based photogrammetry approach for detailed 3D reconstruction of plants. *Plant Methods*, 2025, 21, 1. [https://doi.org/10.21203/rs.3.rs-7178236/v1](https://doi.org/10.21203/rs.3.rs-7178236/v1)
+Mach J., Svatý Z., Šoupa O., Nouzovský L., Halecký M. (2025) Implementation of an SfM-MVS-based photogrammetry approach for detailed 3D reconstruction of plants. *Plant Methods*, 21, 1-24, [https://doi.org/10.21203/rs.3.rs-7178236/v1](https://doi.org/10.21203/rs.3.rs-7178236/v1)
 
 ---
 
