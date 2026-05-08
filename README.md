@@ -72,7 +72,7 @@ plant-phenotyping-pipeline/
 
 3. Follow the instructions in the respective `README.md` file within each subfolder.
 
-> **Note:** The trained segmentation model (`cucSegNDVI_v7.mat`) and the source dataset are available on [Zenodo](https://zenodo.org/records/20080759)
+> **Note:** The trained segmentation model (`cucSegNDVI_v7.mat`) and the source dataset are available on [Zenodo](https://zenodo.org/records/20080759).
 
 ---
 
