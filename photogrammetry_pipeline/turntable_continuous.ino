@@ -12,25 +12,18 @@
 //   endlessly in one direction.
 // =========================================================================
 
-#define EN 8
+#define EN    8  // enable pin (A4988)
+#define X_DIR 5  // direction pin
+#define X_STP 2  // step pin
 
-//Direction pin
-#define X_DIR 5
-
-//Step pin
-#define X_STP 2
-
-//A498
-int delayTime = 1810;  
-int scanningTime = 2000;
-int total_steps = 13100;
-int one_step = total_steps;
+// A4988 stepper driver — pulse delay in microseconds
+int delayTime  = 1810;
+int one_step   = 13100;  // full rotation step count
 
 void step(bool dir, byte dirPin, byte stepperPin, int steps) {
   digitalWrite(dirPin, dir);
-  delay(0);
-  for (int i = 0; i< steps; i++) {
-    digitalWrite(EN,LOW);
+  for (int i = 0; i < steps; i++) {
+    digitalWrite(EN, LOW);
     digitalWrite(stepperPin, HIGH);
     delayMicroseconds(delayTime);
     digitalWrite(stepperPin, LOW);
@@ -39,13 +32,14 @@ void step(bool dir, byte dirPin, byte stepperPin, int steps) {
 }
 
 void setup() {
-  pinMode(X_DIR, OUTPUT); pinMode(X_STP,OUTPUT);
+  pinMode(X_DIR, OUTPUT);
+  pinMode(X_STP, OUTPUT);
   pinMode(EN, OUTPUT);
-  digitalWrite(EN,HIGH);
+  digitalWrite(EN, HIGH);
 }
 
 void loop() {
-  while(true) {
-    step(true, X_DIR, X_STP, one_step); 
+  while (true) {
+    step(true, X_DIR, X_STP, one_step);
   }
 }
