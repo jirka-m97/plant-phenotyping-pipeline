@@ -12,36 +12,30 @@
 //   motor is disabled to lock the reference position.
 // =========================================================================
 
-// Pins_turntable definition
-#define EN 8
-#define X_DIR 5
-#define X_STP 2
+// Turntable pin definitions
+#define EN    8  // enable pin (A4988)
+#define X_DIR 5  // direction pin
+#define X_STP 2  // step pin
 
-// Pins_Hall definition
+// Hall sensor pin definition
 int digitalPin = 7;
 int digitalVal;
 
-// Set parameters (turntable, A498)
-int delayTime = 300;
-int scanningTime = 2000;
-int total_steps = 13100;
-int one_step = total_steps;
+// A4988 stepper driver — pulse delay in microseconds
+int delayTime  = 300;
+int one_step   = 13100;  // full rotation step count
 
-// Step function definition (turntable)
+// reserved for future use
+// int scanningTime = 2000;
+
+// Step function — rotates stepper until Hall sensor is triggered
 void step(bool dir, byte dirPin, byte stepperPin, int steps) {
-  int digitalVal;
-  
   digitalWrite(dirPin, dir);
-  delay(0);
-  
   for (int i = 0; i < steps; i++) {
-    digitalVal = digitalRead(digitalPin); // Check Hall sensor state
-  
-    // Stop if either condition is met
+    digitalVal = digitalRead(digitalPin);  // check Hall sensor state
     if (digitalVal == HIGH) {
-      break;
+      break;  // stop if Hall sensor triggered
     }
-
     digitalWrite(stepperPin, HIGH);
     delayMicroseconds(delayTime);
     digitalWrite(stepperPin, LOW);
@@ -50,28 +44,25 @@ void step(bool dir, byte dirPin, byte stepperPin, int steps) {
 }
 
 void setup() {
-  // Turntable pinModes
+  // Turntable pin modes
   pinMode(X_DIR, OUTPUT);
-  pinMode(X_STP,OUTPUT);
+  pinMode(X_STP, OUTPUT);
   pinMode(EN, OUTPUT);
-  digitalWrite(EN,HIGH);
+  digitalWrite(EN, HIGH);
+  digitalWrite(X_DIR, LOW);
+  digitalWrite(X_STP, LOW);
 
-  digitalWrite(X_DIR,LOW);
-  digitalWrite(X_STP,LOW);
-  
-  // Hall pinModes
+  // Hall sensor pin mode
   pinMode(digitalPin, INPUT);
 }
 
 void loop() {
   digitalVal = digitalRead(digitalPin);
-
   if (digitalVal == LOW) {
-    digitalWrite(EN,LOW);
+    digitalWrite(EN, LOW);
     step(true, X_DIR, X_STP, one_step);
   }
   else {
-    digitalWrite(EN,HIGH);
+    digitalWrite(EN, HIGH);
   }
 }
-
