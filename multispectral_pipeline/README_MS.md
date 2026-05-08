@@ -1,37 +1,45 @@
-# Multispectral analysis pipeline
-## Core functionality
+# Multispectral Pipeline
 
- - Automatic device detection and connection via the GigE Vision interface.
- - Stream negotiation, packet size optimisation, and buffer allocation.
- - Configuration of camera parameters (resolution, exposure time, frame rate, acquisition mode).
- - Acquisition of multispectral images with alternating retrieval from RGB and NIR sensors.
-   - RGB sensor (Source0)
-   - NIR sensor (Source1)
- - Handling of multiple payload formats, including Pleora-compressed data.
- - Saving raw binary images (.bin) for subsequent processing (RGB and NIR separately).
- - Real-time diagnostic output (frame rate, bandwidth, compression ratio).
- - Acquisition of calibration frames (BIAS, DARK, FLAT) for both sensors.
- - Output plant images are stored as .bin files (2048 × 1536 px) in the specified directory.
+This folder contains scripts for multispectral image acquisition, calibration, and NDVI-based plant health assessment. It consists of two independent components: a Python-based acquisition pipeline for camera control and image capture, and a MATLAB-based post-processing pipeline for calibration, segmentation, and NDVI computation.
 
-## Calibration frames
-
- - BIAS: 1 µs exposure, lens shuttered (RGB and NIR).
- - DARK: 985 µs (RGB) and 2850 µs (NIR), lens shuttered.
- - FLAT: identical exposure settings as DARK, lens uncovered.
- - 20 images per category were acquired at full resolution (2048 × 1536 px), consistent with object images (plants).
-
-## Requirements
-
- - Requires Python 3.x, Pleora eBUS SDK, OpenCV, and NumPy.
- - Ensure the Pleora eBUS SDK and drivers are installed on the host system.
- - Run the script to acquire paired RGB and NIR images.
-
-## Additional Script
-
- - The script MS_preview.py (in `/multispectral_workflow/`) enables real-time visualisation of the sensed object (e.g. plants).
 ---
-# MS data post-processing pipeline
- 
+
+## 1. Image acquisition pipeline
+
+### Core functionality
+- Automatic device detection and connection via the GigE Vision interface.
+- Stream negotiation, packet size optimisation, and buffer allocation.
+- Configuration of camera parameters (resolution, exposure time, frame rate, acquisition mode).
+- Acquisition of multispectral images with alternating retrieval from RGB and NIR sensors:
+  - RGB sensor (Source0)
+  - NIR sensor (Source1)
+- Handling of multiple payload formats, including Pleora-compressed data.
+- Saving raw binary images (`.bin`) for subsequent processing (RGB and NIR separately).
+- Real-time diagnostic output (frame rate, bandwidth, compression ratio).
+- Acquisition of calibration frames (BIAS, DARK, FLAT) for both sensors.
+- Output plant images are stored as `.bin` files (2048 × 1536 px) in the specified directory.
+
+### Calibration frames
+- **BIAS:** 1 µs exposure, lens shuttered (RGB and NIR).
+- **DARK:** 985 µs (RGB) and 2850 µs (NIR), lens shuttered.
+- **FLAT:** identical exposure settings as DARK, lens uncovered.
+- 20 images per category were acquired at full resolution (2048 × 1536 px), consistent with object images.
+
+### Requirements
+- Python 3.x
+- Pleora eBUS SDK (must be installed on the host system, including drivers)
+- OpenCV
+- NumPy
+
+### Additional script
+`MS_preview.py` enables real-time visualisation of the sensed object (e.g. plants).
+
+---
+
+## 2. MS data post-processing pipeline
+
+### Core functionality
+
 1. **RGB image calibration**
    - Reads master BIAS, DARK, and FLAT frames (RGB only).
    - Applies corrections to the raw `.bin` image.
@@ -55,15 +63,14 @@
    - Computes NDVI as (NIR − Red) / (NIR + Red).
    - Stores the NDVI map in the MATLAB workspace for subsequent processing.
 
-6. **Plant segmentation (manual, without segmentator – applicable to *Cucumis sativus* L., *Solanum lycopersicum* L., *Lactuca sativa* L., and potentially other untested plant species)**
+6. **Plant segmentation — manual** (`MS_pipeline_v8.m`)
    - Creates a binary mask using the MATLAB Image Segmenter app (Graph Cut tool).
-   - Script: MS_pipeline_v8.m (in `/multispectral_workflow/`)
+   - Applicable to *Cucumis sativus* L., *Solanum lycopersicum* L., *Lactuca sativa* L., and potentially other untested plant species.
 
-7. **Plant segmentation (automated, with segmentator – *Cucumis sativus* only)**
-   - Loads the pre-trained ResNet-50 semantic segmentation model (cucSegNDVI_v7.mat).
+7. **Plant segmentation — automated** (`MS_pipeline_v8_cuc.m`, *Cucumis sativus* only)
+   - Loads the pre-trained ResNet-50 semantic segmentation model (`cucSegNDVI_v7.mat`).
    - Generates a binary plant mask.
    - Refines the mask by removing small objects and applying NDVI-based thresholds to exclude background, soil, and artefacts.
-   - Script: MS_pipeline_v8_cuc.m (in `/multispectral_workflow/`)
 
 8. **NDVI for plant pixels only**
    - Applies the refined plant mask to retain only valid plant pixels.
@@ -71,32 +78,28 @@
 
 9. **Visualisation**
    - Displays RGB image with ROI overlays.
-   - Displays NDVI maps with jet colour scale fixed to range [-1, 1].
+   - Displays NDVI maps with jet colour scale fixed to range [−1, 1].
 
-## Requirements
-
-- MATLAB (tested with R2023a or later)  
-- Toolboxes:
-     - Image Processing Toolbox  
-     - Deep Learning Toolbox  
-- Pre-trained semantic segmentation network (trained and validated for *Cucumis sativus* datasets):
-     - Available via Zenodo: [https://doi.org/10.5281/zenodo.16902271](https://doi.org/10.5281/zenodo.16902271)  
-     - After download, place the file into `/multispectral_workflow/`  
-     - Default path defined in the script:
-       ```matlab
-       segModelPath = "cucSegNDVI_v7.mat";
-       ```
-     - Semantic segmentation model based on a DeepLab v3+ architecture with a ResNet50 backbone, fine-tuned for plant segmentation (*Cucumis sativus*).
+### Requirements
+- MATLAB R2023a or later
+- Image Processing Toolbox
+- Deep Learning Toolbox
 - Input data:
-     - Raw RGB and NIR images in 8-bit binary format (`.bin`)  
-     - Image dimensions: 2048 × 1536 pixels 
-     - Calibration frames (BIAS, DARK, FLAT) for both RGB and NIR sensors  
-     - Danes Picta GC5 chart for empirical line calibration    
+  - Raw RGB and NIR images in 8-bit binary format (`.bin`), dimensions 2048 × 1536 px
+  - Calibration frames (BIAS, DARK, FLAT) for both RGB and NIR sensors
+  - Danes Picta GC5 chart for empirical line calibration
 
-## Notes
+### Pre-trained segmentation model
+The automated segmentation pipeline requires the pre-trained DeepLab v3+ model with a ResNet-50 backbone, fine-tuned for *Cucumis sativus* plant segmentation:
 
-   - All variables are created in the MATLAB base workspace (useful for debugging).
-   - Chip coordinates are fixed by default but can be adjusted if the test chart position changes.
-   - The script segmentator_training.m (in `/multispectral_workflow/`) includes an additional routine for retraining the automated segmentation model.
+- Available on Zenodo: [https://doi.org/10.5281/zenodo.16902271](https://doi.org/10.5281/zenodo.16902271)
+- After download, place `cucSegNDVI_v7.mat` into `/multispectral_pipeline/`
+- Default path defined in the script:
+  ```matlab
+  segModelPath = "cucSegNDVI_v7.mat";
+  ```
+- To retrain or adapt the model, use `segmentator_training.m` (also available on Zenodo).
 
-
+### Notes
+- All variables are created in the MATLAB base workspace, which is useful for debugging.
+- Chip coordinates are fixed by default but can be adjusted if the test chart position changes.
