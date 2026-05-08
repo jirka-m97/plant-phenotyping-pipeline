@@ -7,13 +7,13 @@
 // Date: 2025-09-18
 // Description:
 //   Arduino sketch to move a stepper-driven turntable to its zero position
-//   using an A4988 driver and a Hall effect sensor as a stop signal. The
+//   using an TMC2130 driver and a Hall effect sensor module KY-024 as a stop signal. The
 //   stepper is rotated until the Hall sensor is triggered, after which the
 //   motor is disabled to lock the reference position.
 // =========================================================================
 
 // Turntable pin definitions
-#define EN    8  // enable pin (A4988)
+#define EN    8  // enable pin (TMC2130)
 #define X_DIR 5  // direction pin
 #define X_STP 2  // step pin
 
@@ -21,12 +21,9 @@
 int digitalPin = 7;
 int digitalVal;
 
-// A4988 stepper driver — pulse delay in microseconds
+// TMC2130 stepper driver — pulse delay in microseconds
 int delayTime  = 300;
 int one_step   = 13100;  // full rotation step count
-
-// reserved for future use
-// int scanningTime = 2000;
 
 // Step function — rotates stepper until Hall sensor is triggered
 void step(bool dir, byte dirPin, byte stepperPin, int steps) {
