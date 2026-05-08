@@ -63,16 +63,22 @@ Installable with `pip`:
 ---
 
 ## Local modules and external scripts
+- must be present in the same directory 
 
-Two local modules, two external Arduino sketches, and two supporting data files must be present in the same directory:
-
+### Local modules
 - `arduino_upload.py` → provides the function `upload_arduino` for flashing Arduino sketches
 - `single_capture.py` → provides the function `capture_single_image` for camera operation and frame saving
+
+### Arduino scripts
 - `turntable_continuous_rotation.ino` → Arduino sketch for continuous rotation of the turntable
 - `turntable_zero_position.ino` → Arduino sketch for setting the turntable to its zero position
-- `turntable_markers.txt` → coordinates of 16 circular 12-bit coded reference markers placed on the turntable lid, used for camera alignment and workspace scaling in Metashape
+- `turntable_markers.txt` → coordinates of 16 circular 12-bit coded reference markers placed on the turntable lid, used for camera alignment and workspace scaling in
+
+### Metashape calibration XML file
 - `calib_calibrationField.xml` → XML file containing intrinsic camera calibration parameters, used for improved alignment accuracy in Plant3D.py
 
+Pretrained poses of AR4 robotic arm
+- `P_QR`, `P_redset_120`, `P_fullset_360`, `P_end` → pre-recorded robot pose sequences stored in binary format (pickle), defining the joint positions of the robotic arm for QR capture, image acquisition, and final positioning. The poses were taught using the AR4 graphical user interface provided by the manufacturer (Annin Robotics).
 ---
 
 ## Workflow summary
