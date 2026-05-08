@@ -86,7 +86,7 @@ The multifunctional platform integrates multispectral imaging and photogrammetri
 - **Biotic interaction studies** – monitoring the effects of microbial biostimulants or pathogens on leaf reflectance characteristics.
 - **High-throughput screening** – systematic acquisition of spectral datasets under controlled and reproducible imaging conditions.
 
-### 3D photogrammetry
+### Photogrammetric analysis
 - **Morphological characterisation** – precise reconstruction of plant geometry for quantifying height, volume, and surface area.
 - **Growth dynamics** – temporal monitoring of plant structure to assess developmental stages and stress-induced changes.
 - **Phenotyping under controlled conditions** – reproducible, automated acquisition of structural datasets without manual intervention.
