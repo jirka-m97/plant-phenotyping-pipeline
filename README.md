@@ -43,7 +43,7 @@ The repository is intended as a resource for researchers and engineers in plant 
 plant-phenotyping-pipeline/
 ├── multispectral_pipeline/   # Multispectral imaging, segmentation, and NDVI-based health assessment
 ├── photogrammetry_pipeline/  # Robotic arm control, turntable control, RGB camera, and 3D reconstruction
-├── 3D_NVDI_pipeline/         # Radiometric calibration, four-band composites, and NDVI projection onto the 3D mesh
+├── 3D-NVDI_pipeline/         # Radiometric calibration, four-band composites, and NDVI projection onto the 3D mesh
 ├── LICENSE
 └── README.md
 ```
