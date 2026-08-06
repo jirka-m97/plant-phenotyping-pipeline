@@ -132,24 +132,3 @@ front of the camera (`z > 0`) and inside the image extent are used. The values
 are accumulated across all cameras and divided by the number of cameras that
 saw the vertex. The NDVI of a face is then the plain mean of its three
 vertices.
-
----
-
-## Things to watch out for
-
-- **`rename.m` renames in place** (`movefile`). Pick an offset larger than the
-  highest number in the target set, otherwise files get overwritten. The
-  operation cannot be undone.
-- **The projection ignores visibility** — occlusion is not tested, so a vertex
-  on the far side of a leaf can pick up NDVI from a pixel that in reality
-  belongs to something else. Averaging over many cameras smooths most of this
-  out, but in a dense canopy it remains a limitation of the method.
-- **Background thresholding** (`ndvi_threshold`) removes faces, not vertices —
-  the exported OBJ therefore still contains isolated, unreferenced vertices.
-- **The OBJ loader grows arrays row by row** (`vertices(end+1,:)`), which is
-  slow for large meshes. Above roughly 1 M vertices, `readSurfaceMesh` is worth
-  using instead.
-- **`imrect` is deprecated.** Newer MATLAB releases offer `drawrectangle`; it
-  has been kept here for compatibility with the established workflow.
-- **Bias/dark/flat masters** are selected by the `RGB` / `NIR` substring in the
-  file name, so the calibration frames must be named consistently.
