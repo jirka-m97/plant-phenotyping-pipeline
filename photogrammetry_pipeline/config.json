@@ -11,14 +11,14 @@
   "PROJECT_NAME": "YYMMDD_speciesCode_plantID",
 
   "_2nd_section": "=== Paths to source data and results ===",
-  "SOURCE_FOLDER_PATH": "./source_folder",
-  "RESULTS_FOLDER_PATH": "./results_folder",
+  "SOURCE_FOLDER_PATH": "<source_folder>",
+  "RESULTS_FOLDER_PATH": "<results_folder>",
 
   "_3rd_section": "=== Paths to coordinates (control points) ===",
-  "CONTROL_POINTS_COORDINATES": "./coordinates.txt",
+  "CONTROL_POINTS_COORDINATES": "<coordinates_folder>",
 
   "_4th_section": "=== Camera calibration parameters ===",
-  "CALIBRATION_FILE": "./calib_calibrationField.xml",
+  "CALIBRATION_FILE": "<./calib_calibrationField.xml>",
 
   "_5th_section": "=== Build model parameters ===",
   "TWEAK_1": null,
