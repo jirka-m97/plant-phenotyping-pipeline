@@ -50,7 +50,7 @@ ROB_POS  = "./P_QR"
 ARDUINO_ZERO = "./turntable_zero_position.ino"
 ARDUINO_PORT = "COM5"  # adjust COM port if needed
 fqbn         = "arduino:avr:uno"
-BASE_FOLDER  = "./Fotogram_source_data"
+BASE_FOLDER  = "<PHOTOGRAM_SOURCE_DATA>"
 QR_EXPOSURE  = 180_000
 
 # Set to False to skip QR capture and save images directly into BASE_FOLDER
