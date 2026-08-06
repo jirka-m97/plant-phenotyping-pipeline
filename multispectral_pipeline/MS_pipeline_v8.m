@@ -26,13 +26,13 @@ height             = 1536;
 bitDepth           = 'uint8';
 
 % Single frames
-pathRGB            = "./_testing/Img_1_RGB.bin";
-pathNIR            = "./_testing/Img_1_NIR.bin";
+pathRGB            = "<PATH_TO_RGB_IMAGE>";
+pathNIR            = "<PATH_TO_NIR_IMAGE>";
 
 % Calibration folders (masters are averaged from *.bin filtered by keyword)
-folder_biasRGB     = "./_testing/Bias";
-folder_darkRGB     = "./_testing/Dark";
-folder_flatRGB     = "./_testing/Flat";
+folder_biasRGB     = "<PATH_TO_BIAS_IMAGES>";
+folder_darkRGB     = "<PATH_TO_DARK_IMAGES>";
+folder_flatRGB     = "<PATH_TO_FLAT_IMAGES>";
 
 folder_biasNIR     = folder_biasRGB;   % RGB and NIR calibration frames stored in the same folder
 folder_darkNIR     = folder_darkRGB;   % separated by keyword filtering (RGB/NIR)
