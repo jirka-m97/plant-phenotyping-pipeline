@@ -8,23 +8,6 @@ mean value per face.
 
 ---
 
-## Workflow
-
-```mermaid
-flowchart TD
-    A["Raw target frames<br/>Img_*_RGB.bin + _NIR.bin"] --> B["lin_reg_coef.m<br/>WB + OECF calibration"]
-    B --> C["P6.mat<br/>coefficients"]
-    D["Raw plant frames<br/>360° set"] --> E["data_analysis.m<br/>bias/dark/flat → demosaic →<br/>WB → reflectance"]
-    C --> E
-    E --> F["*_reflectance_RGB.tif<br/>*_reflectance_NIR.tif"]
-    F --> G["rename.m<br/>(optional) numbering offset"]
-    G --> H["tif_4band.m<br/>RGB + NIR → 4-band TIFF"]
-    H --> I["Agisoft Metashape<br/>photogrammetric reconstruction"]
-    I --> J["export: model .obj<br/>+ cameras.txt<br/>(exterior and interior orientation)"]
-    J --> K["NDVI_3D_model.m<br/>NDVI projection onto vertices → faces"]
-    K --> L["NDVI mesh, render, filtered OBJ"]
-```
-
 | # | Script | What it does |
 |---|--------|--------------|
 | 1 | `lin_reg_coef.m` | Interactive calibration on a reference target. Computes the white balance coefficients and the linear OECF mapping (image value → reflectance in %) and stores them in a `.mat` file. |
