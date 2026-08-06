@@ -28,6 +28,13 @@ The repository is intended as a resource for researchers and engineers in plant 
 - Software for industrial RGB camera operation and automated image acquisition.
 - Integration with the [Metashape API](https://www.agisoft.com/pdf/metashape_python_api_2_0_0.pdf) for three-dimensional reconstruction of plants, enabling detailed analysis of morphology and growth dynamics.
 
+### 3. 3D NDVI mapping
+- Radiometric characterisation of both channels of the multispectral camera on a reference target: white balance coefficients and a linear opto-electronic conversion function mapping digital values to reflectance, derived separately for each camera position and applied to the frames acquired from that position.
+- Batch conversion of the raw frame sets to reflectance (bias, dark and flat-field correction, RGGB demosaicing, white balance, digital-value-to-reflectance mapping) with export as 32-bit floating-point TIFF.
+- Assembly of four-band (R, G, B, NIR) composites serving as the radiometrically calibrated input for the photogrammetric reconstruction in Agisoft Metashape.
+- Back-projection of the reconstructed mesh into the source imagery, with NDVI assigned to every vertex as a mean over all images in which the vertex was observed, and subsequently averaged per face.
+- Visualisation of the NDVI mesh, threshold-based removal of soil and background, publication-quality render at 300 dpi, export of the filtered model as OBJ, and an interactive data tip reporting the NDVI value under the cursor.
+
 ---
 
 ## Repository structure
@@ -36,6 +43,7 @@ The repository is intended as a resource for researchers and engineers in plant 
 plant-phenotyping-pipeline/
 ├── multispectral_pipeline/   # Multispectral imaging, segmentation, and NDVI-based health assessment
 ├── photogrammetry_pipeline/  # Robotic arm control, turntable control, RGB camera, and 3D reconstruction
+├── 3D_NVDI_pipeline/         # Radiometric calibration, four-band composites, and NDVI projection onto the 3D mesh
 ├── LICENSE
 └── README.md
 ```
@@ -56,6 +64,13 @@ plant-phenotyping-pipeline/
 - [Agisoft Metashape Professional](https://www.agisoft.com/downloads/installer/) 
 - [Daheng Galaxy SDK](https://en.daheng-imaging.com/list-57-1.html) (for RGB camera control)
 
+### 3D NDVI pipeline
+- MATLAB R2022a or later
+- Image Processing Toolbox
+- [Agisoft Metashape Professional](https://www.agisoft.com/downloads/installer/) (photogrammetric reconstruction performed outside MATLAB)
+- Input data: raw frames of the multispectral camera (`uint8`, 2048 × 1536, RGGB Bayer pattern) together with bias, dark, and flat-field calibration frame sets for both the RGB and the NIR channel
+- Reference target with known chip reflectances (Danes-Picta GC5) for the radiometric calibration
+
 ---
 
 ## Quick start
@@ -67,12 +82,14 @@ plant-phenotyping-pipeline/
 
 2. Navigate to the pipeline of interest:
    ```bash
-   cd multispectral_pipeline   # or photogrammetry_pipeline
+   cd multispectral_pipeline   # or photogrammetry_pipeline, or 3D-NDVI_pipeline
    ```
 
 3. Follow the instructions in the respective `README.md` file within each subfolder.
 
 > **Note:** The trained segmentation model (`cucSegNDVI_v7.mat`) and the source dataset are available on [Zenodo](https://zenodo.org/records/20080759).
+
+> **Note:** The 3D NDVI pipeline is executed as a sequence of MATLAB scripts (calibration → reflectance → optional renumbering → four-band composites), followed by the reconstruction in Metashape, from which the mesh (`.obj`) and the camera orientations (`cameras.txt`, exterior and interior) are exported before the final NDVI projection. All paths and parameters are collected in a settings block at the head of each script.
 
 ---
 
@@ -92,6 +109,13 @@ The multifunctional platform integrates multispectral imaging and photogrammetri
 - **Phenotyping under controlled conditions** – reproducible, automated acquisition of structural datasets without manual intervention.
 - **Quality control and validation** – use of reference markers and calibration procedures for metric accuracy and reproducibility.
 - **Transferable workflows** – applicability beyond plant sciences, e.g. technical inspection of small components, materials testing, or educational demonstrations of photogrammetric methods.
+
+### 3D NDVI mapping
+- **Spatially resolved vitality assessment** – NDVI evaluated on the reconstructed plant surface rather than on a single two-dimensional projection, so that shaded, inclined, and mutually occluding leaves are represented individually.
+- **Structure-function analysis** – direct combination of morphological descriptors with the physiological status of the corresponding part of the canopy.
+- **Suppression of viewing-geometry effects** – averaging of the index over all orientations in which a given point was observed, reducing the influence of illumination and viewing angle on the resulting value.
+- **Traceable radiometry** – conversion of digital values to physical reflectance with coefficients derived per camera position, ensuring comparability between specimens and between measurement campaigns.
+- **Reporting and reuse** – export of publication-quality renders and of the cleaned model for further processing or for re-import into the photogrammetric project.
 
 ---
 
